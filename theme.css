@@ -1,5 +1,5 @@
 /*
- SAKO CINEMA — v1.0.0 candidate (rc2)
+ SAKO CINEMA — v1.0.0 candidate (rc3)
  Jellyfin Web / ElegantFin.
  Original code MIT; ElegantFin remains an independent upstream dependency.
  Permanent library JPGs are managed inside Jellyfin — CSS never replaces them.
@@ -92,6 +92,8 @@ html,body,.skinBody {color:var(--sako-text)}
    Jellyfin itself renders image URLs here. */
 .cardScalable,.cardImageContainer {border-radius:14px;overflow:hidden}
 .cardImageContainer {background-color:#121a32!important}
+/* Jellyfin 12 hover overlay contains <a class="cardImageContainer">: keep it see-through or it hides the poster */
+.cardOverlayContainer .cardImageContainer {background-color:transparent!important}
 #homeTab .cardBox {
  overflow:visible!important;
  border:0!important;background:transparent!important;box-shadow:none!important
@@ -126,6 +128,59 @@ html,body,.skinBody {color:var(--sako-text)}
 }
 .itemBackdrop::after {pointer-events:none}
 .paperList,.formDialogContent,.dialogContent {background-color:var(--sako-panel)}
+/* Details page: primary action, glass secondary actions, tinted panels */
+.itemDetailPage .mainDetailButtons .btnPlay.detailButton {
+ background:var(--sako-gradient)!important;color:#fff!important;
+ border:1px solid rgba(196,178,255,.38)!important;
+ box-shadow:0 6px 22px rgba(108,85,219,.34)!important
+}
+.itemDetailPage .mainDetailButtons .btnPlay.detailButton * {color:#fff!important}
+.itemDetailPage .mainDetailButtons .detailButton:not(.btnPlay) {
+ background-color:rgba(21,29,51,.6)!important;
+ border:1px solid rgba(142,147,221,.28)!important
+}
+.itemDetailPage .mainDetailButtons .detailButton:not(.btnPlay):hover {
+ background-color:rgba(128,93,228,.28)!important;border-color:rgba(160,140,255,.55)!important
+}
+.itemDetailPage .tagline {color:#d8d0ff!important;font-weight:600}
+/* No max-width on the overview: ElegantFin clamps it to two lines */
+.itemDetailPage .overview {color:#c3cbe0!important;line-height:1.6}
+.itemDetailPage .itemExternalLinks a {
+ background-color:rgba(128,93,228,.18)!important;color:#dcd6ff!important;
+ border:1px solid rgba(142,147,221,.3)!important
+}
+.itemDetailPage .itemExternalLinks a:hover {background-color:rgba(128,93,228,.36)!important}
+.itemDetailPage .itemDetailsGroup,.itemDetailPage .trackSelections {
+ background-color:rgba(21,29,51,.72)!important;
+ border:1px solid rgba(142,147,221,.22)!important;border-radius:14px!important
+}
+.itemDetailPage .itemDetailsGroup .label {color:var(--sako-muted)!important}
+.itemDetailPage .detailVerticalSection > .sectionTitle,
+.itemDetailPage .detailVerticalSection .sectionTitleContainer .sectionTitle {
+ font-size:1.15rem!important;line-height:1.45!important;
+ font-weight:750!important;letter-spacing:-.02em;color:#f0f2ff!important
+}
+.itemDetailPage .personCard .cardImageContainer {box-shadow:inset 0 0 0 2px rgba(142,147,221,.3)}
+/* Library browse: toolbar accents and card glow (no transform: scrollers would clip it) */
+.MuiToolbar-root .MuiButtonGroup-contained {
+ background:var(--sako-gradient);border-radius:10px;overflow:hidden;
+ box-shadow:0 4px 16px rgba(108,85,219,.3)
+}
+.MuiToolbar-root .MuiButtonGroup-contained .MuiButton-contained {background-color:transparent!important;box-shadow:none!important}
+.MuiToolbar-root .MuiButtonGroup-contained .MuiButton-contained:hover {background-color:rgba(255,255,255,.12)!important}
+.MuiToolbar-root .MuiChip-filled {background-color:rgba(128,93,228,.26)!important;border:1px solid rgba(142,147,221,.32)}
+.countIndicator {background:var(--sako-gradient)!important}
+.libraryPage .card:not(.personCard) .cardScalable {
+ outline:1px solid rgba(142,147,221,.22);outline-offset:-1px;
+ transition:box-shadow .2s ease,outline-color .2s ease
+}
+@media (hover:hover) and (pointer:fine) {
+ .libraryPage .card:not(.personCard):hover .cardScalable,
+ .libraryPage .card:not(.personCard):focus-within .cardScalable {
+  outline-color:rgba(137,131,255,.72);
+  box-shadow:0 10px 30px rgba(0,0,0,.42),0 0 0 2px rgba(130,103,233,.5)!important
+ }
+}
 /* Buttons and controls */
 .raised.button-submit,.button-submit,.emby-button.submit,.fab {
  background:var(--sako-gradient)!important;color:white!important;border-radius:12px
