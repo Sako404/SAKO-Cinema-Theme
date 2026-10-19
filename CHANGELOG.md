@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.0-rc3 — details and library polish
+- Fixed: posters disappeared on mouse hover in every card grid (Jellyfin 12 overlay link inherited the opaque card background)
+- Details: gradient Play/Resume, glass secondary buttons, lavender tagline, readable overview, violet external-link chips, tinted info panels, section headings matching home, ring on cast photos
+- Library: gradient Play All group, violet item-count chip, gradient unplayed-count badges, card outline with hover glow
+
 ## 1.0.0-rc2 — backdrops and heading consistency
 - Fixed: item backdrops on detail pages were hidden by an opaque body background; body is transparent again and backdrops show through a navy scrim
 - Fixed: "My Media" and "Continue Watching" headings now match the size and weight of the other home sections (left alignment unchanged)
