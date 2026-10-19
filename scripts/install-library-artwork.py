@@ -47,6 +47,7 @@ def main():
     g.add_argument("--apply",action="store_true")
     p.add_argument("--backup-dir",default="./sako-cinema-library-backup")
     p.add_argument("--only",help="Process only one exact library name, recommended for initial apply")
+    p.add_argument("--exclude",action="append",default=[],help="Skip a library by exact name (repeatable)")
     args=p.parse_args()
     base=args.url.rstrip("/")
     print("Jellyfin:",base)
@@ -79,6 +80,8 @@ def main():
         matches.append((name,itemid,file))
     if args.only:
         matches=[m for m in matches if norm(m[0])==norm(args.only)]
+    excluded={norm(name) for name in args.exclude}
+    matches=[m for m in matches if norm(m[0]) not in excluded]
     if not matches: sys.exit("No mapped libraries found. No changes made.")
     print("\nMatched libraries:")
     for name,itemid,file in matches: print("  ",name,"->",file,"(ItemId:",itemid,")")
