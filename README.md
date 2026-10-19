@@ -76,10 +76,9 @@ Set them as each library's **Primary** image in Jellyfin rather than overriding 
 
 These are optional, but they get closest to the intended look:
 
-- **Settings → Home:** keep the section order *My Media*, *Continue Watching*, *Next Up*, *Recently Added*. The layout module expects My Media first and Continue Watching second.
+- **Settings → Home:** keep the section order *My Media* (or *My Media (small)*), *Continue Watching*, *Next Up*, *Recently Added*. This is Jellyfin's default. The layout module expects My Media first and Continue Watching second.
 - **Settings → Home:** hide rarely used libraries from *My Media*, so six tiles fill one row.
 - **Settings → Home:** turn on *Use episode images in Next Up and Continue Watching* for wide thumbnails.
-- **Settings → Display:** turn on *Backdrops*, which the item details pages use.
 - **Dashboard → General:** set the *Server name* you want shown at the top of the sidebar.
 
 ## Updating and rollback
