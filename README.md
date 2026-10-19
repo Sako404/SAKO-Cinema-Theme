@@ -34,8 +34,8 @@
 2. Replace its contents with:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.1.0/theme.css");
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.1.0/layout.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.2.0/theme.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.2.0/layout.css");
 ```
 
 3. Save, then reload Jellyfin with **Ctrl+Shift+R**.
@@ -43,11 +43,11 @@
 The second line is **optional**. Leave it out to keep Jellyfin's standard layout with the SAKO colours and cards. `theme.css` already includes ElegantFin, so don't import ElegantFin separately.
 
 > [!IMPORTANT]
-> Always import a **release tag** such as `@v1.1.0`, never `@main` and never an address without a version. jsDelivr can keep serving an old commit for a branch on some of its servers, even after a purge. Tags never change. To update, change the version number in both lines. Releases are listed under [Releases](https://github.com/Sako404/SAKO-Cinema-Theme/releases).
+> Always import a **release tag** such as `@v1.2.0`, never `@main` and never an address without a version. jsDelivr can keep serving an old commit for a branch on some of its servers, even after a purge. Tags never change. To update, change the version number in both lines. Releases are listed under [Releases](https://github.com/Sako404/SAKO-Cinema-Theme/releases).
 
 ## Your own hero title
 
-From 1.2.0 (in testing as `v1.2.0-rc.1`) the hero image has no text baked in. The title is drawn by CSS, so you can put your own name on it. Add any of these lines **after** the imports:
+From 1.2.0 the hero image has no text baked in. The title is drawn by CSS, so you can put your own name on it. Add any of these lines **after** the imports:
 
 ```css
 :root {
@@ -114,10 +114,17 @@ These are optional, but they get closest to the intended look:
 
 ## Updating and rollback
 
-To update, change the tag in both lines (for example `@v1.1.0` → `@v1.2.0`) and reload with Ctrl+Shift+R.
+To update, change the tag in both lines (for example `@v1.1.0` → `@v1.2.0`) and reload with Ctrl+Shift+R. Your own `--sako-hero-…` lines stay as they are.
 
 <details>
 <summary>Roll back to an earlier version</summary>
+
+1.1.0 (title baked into the hero image; `--sako-hero-*` lines have no effect):
+
+```css
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.1.0/theme.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.1.0/layout.css");
+```
 
 1.0.0-rc1:
 
