@@ -13,6 +13,11 @@
  --sako-text:#f2f4fa; --sako-muted:#acb9d7;
  --sako-focus:#90caff; --primary-accent-color:#805de4;
  --sako-gradient:linear-gradient(105deg,#477dff 0%,#805de4 64%,#b75fd0 100%);
+ /* Hero text: override any of these after the @import; "" hides that line */
+ --sako-hero-kicker:"Welcome home";
+ --sako-hero-title:"SAKO Cinema";
+ --sako-hero-subtitle:"Movies. Shows. Music. Memories.";
+ --sako-hero-tagline:"Our favourite stories, together.";
 }
 html {background-color:var(--sako-bg)!important}
 /* body must stay transparent (Jellyfin core rule): item backdrops sit behind it at z-index:-1 */
@@ -42,21 +47,57 @@ html,body,.skinBody {color:var(--sako-text)}
  border-radius:11px;
 }
 .emby-tab-button-active {border-bottom:2px solid var(--sako-violet)!important}
-/* Hero — source 2290×687 (10:3). Never force a fixed height. */
+/* Hero — source 2290×687 (10:3). Never force a fixed height.
+ The image is text-free; the title is drawn below so each install can set its own.
+ --sako-hero-w / --sako-hero-top place the image, and the text follows them. */
+#homeTab {
+ --sako-hero-w:min(calc(100cqw - 2rem),1600px);
+ --sako-hero-top:1rem;
+ position:relative;container-type:inline-size
+}
 #homeTab .homeSectionsContainer::before,
 #homeTab > .sections::before {
  content:"";
  display:block!important;
  box-sizing:border-box!important;
- width:min(calc(100% - 2rem),1600px)!important;
- max-width:1600px!important;
+ width:var(--sako-hero-w)!important;
+ max-width:none!important;
  aspect-ratio:10/3!important;
  height:auto!important; min-height:0!important; max-height:none!important;
- margin:1rem auto 1.7rem!important;
+ margin:var(--sako-hero-top) auto 1.7rem!important;
  border-radius:22px!important;
  border:1px solid rgba(143,135,247,.48)!important;
- background:#111a35 url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@058dee4adcf09a68100ed5e4f342b98eccb60f84/artwork/family-cinema-hero.jpg") center/100% 100% no-repeat!important;
+ background:#111a35 url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@1855d90a60bfdf202dcbb5c3b879d60ac66b245e/artwork/family-cinema-hero-clean.jpg") center/100% 100% no-repeat!important;
  box-shadow:0 20px 52px rgba(0,0,0,.37),0 0 30px rgba(100,73,215,.075)!important;
+}
+/* Hero text: kicker, title, subtitle + tagline with the accent bar. Positions are fractions of the hero width. */
+#homeTab::before,#homeTab::after,#homeTab > .homeSectionsContainer::after {
+ position:absolute;z-index:1;pointer-events:none;
+ left:calc((100cqw - var(--sako-hero-w)) / 2 + var(--sako-hero-w) * .0575);
+ max-width:calc(var(--sako-hero-w) * .52);
+ white-space:pre-line;line-height:1.2
+}
+#homeTab > .homeSectionsContainer::after {
+ content:var(--sako-hero-kicker);
+ top:calc(var(--sako-hero-top) + var(--sako-hero-w) * .0665);
+ font-size:calc(var(--sako-hero-w) * .0128);font-weight:500;
+ letter-spacing:.34em;text-transform:uppercase;color:#a9b9e8
+}
+#homeTab::before {
+ content:var(--sako-hero-title);
+ top:calc(var(--sako-hero-top) + var(--sako-hero-w) * .0905);
+ font-size:calc(var(--sako-hero-w) * .0445);font-weight:800;line-height:1.1;
+ letter-spacing:.005em;text-transform:uppercase;
+ background:linear-gradient(90deg,#c3ebff 0%,#aeb8ff 52%,#e4acff 100%);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+ filter:drop-shadow(0 0 calc(var(--sako-hero-w) * .006) rgba(150,140,255,.45))
+}
+#homeTab::after {
+ content:var(--sako-hero-subtitle) "\A" var(--sako-hero-tagline);
+ top:calc(var(--sako-hero-top) + var(--sako-hero-w) * .1405);
+ font-size:calc(var(--sako-hero-w) * .0198);line-height:1.55;color:#dfe4fb;
+ padding-bottom:calc(var(--sako-hero-w) * .013);
+ background:var(--sako-gradient) left bottom / calc(var(--sako-hero-w) * .115) 4px no-repeat
 }
 /* Home layout: retain previously user-tested heading alignment. */
 #homeTab .verticalSection {margin-bottom:1.8rem!important}
@@ -207,9 +248,16 @@ button:focus-visible,a:focus-visible,input:focus-visible {
  outline:3px solid var(--sako-focus)!important
 }
 @media (max-width:700px) {
+ #homeTab {--sako-hero-w:calc(100cqw - 1rem);--sako-hero-top:.65rem}
  #homeTab .homeSectionsContainer::before,#homeTab > .sections::before {
-  width:calc(100% - 1rem)!important;border-radius:12px!important;
-  margin:.65rem auto 1.1rem!important
+  border-radius:12px!important;
+  margin:var(--sako-hero-top) auto 1.1rem!important
+ }
+ /* too small to read on a phone: keep only the title, centred vertically */
+ #homeTab::after,#homeTab > .homeSectionsContainer::after {display:none}
+ #homeTab::before {
+  top:calc(var(--sako-hero-top) + var(--sako-hero-w) * .15);transform:translateY(-50%);
+  font-size:calc(var(--sako-hero-w) * .062)
  }
  #homeTab .cardScalable,#homeTab .cardImageContainer {border-radius:10px!important}
  .skinHeader,.skinHeader-withBackground {backdrop-filter:none}

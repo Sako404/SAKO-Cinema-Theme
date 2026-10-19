@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0-rc.1 — your own hero title
+- Hero image is now text-free (`artwork/family-cinema-hero-clean.jpg`); kicker, title, subtitle, tagline and accent bar are drawn by CSS and scale with the hero
+- New variables `--sako-hero-title`, `--sako-hero-kicker`, `--sako-hero-subtitle`, `--sako-hero-tagline`; defaults reproduce the 1.1.0 look, `""` hides a line (closes #8)
+- Phones show the title only, centred on the hero
+- Hero size and offset now come from `--sako-hero-w` / `--sako-hero-top`, so the image and its text always move together (theme-only, layout and sidebar modes)
+
 ## 1.1.0 — release
 - Same CSS as 1.1.0-rc.2: theme with detail backdrops, hover poster fix, details and library polish, aligned headings; optional `layout.css` with sidebar, full-width hero, tile grid and one card family across home rows
 - Install from release tags only (README); jsDelivr branch URLs can serve stale commits

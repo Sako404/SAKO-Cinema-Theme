@@ -55,17 +55,17 @@
  html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .itemsContainer.vertical-wrap:has(> .backdropCard) {grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
  html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .itemsContainer.vertical-wrap > .card {width:auto!important}
  /* header is transparent here, so let the hero run up behind it */
- html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) #homeTab .homeSectionsContainer::before,
- html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) #homeTab > .sections::before {margin-top:-48px!important}
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) #homeTab {--sako-hero-top:-48px}
 }
 }
 
 /* ---------- Home: full-bleed hero, tiles overlap its lower edge ---------- */
 @media (min-width:701px) {
+ #homeTab {--sako-hero-w:100cqw;--sako-hero-top:-1px}
  #homeTab .homeSectionsContainer::before,#homeTab > .sections::before {
-  width:100%!important;max-width:none!important;margin:-1px 0 -7% 0!important;
+  margin:var(--sako-hero-top) 0 -7% 0!important;
   border:0!important;border-radius:0!important;box-shadow:none!important;
-  background:url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@058dee4adcf09a68100ed5e4f342b98eccb60f84/artwork/family-cinema-hero.jpg") center/cover no-repeat!important;
+  background:url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@1855d90a60bfdf202dcbb5c3b879d60ac66b245e/artwork/family-cinema-hero-clean.jpg") center/cover no-repeat!important;
   /* fade into whatever background sits underneath, no hard edge */
   -webkit-mask-image:linear-gradient(180deg,#000 58%,transparent 100%);
   mask-image:linear-gradient(180deg,#000 58%,transparent 100%)
