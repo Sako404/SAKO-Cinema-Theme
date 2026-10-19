@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0-rc1 — optional layout module
+- New `layout.css` (opt-in second import): sidebar from Jellyfin's library nav, full-width home hero with overlapping library tiles, My Media tile grid, panel Continue Watching cards, full-width library grids next to the sidebar
+- Sidebar only from 1100px, never in the TV layout or video player, and only where `:has()` is supported
+- theme.css fix: all home headings now align with Jellyfin's 3.3% section indent at every width (previously correct only at 2560px)
+
 ## 1.0.0-rc3 — details and library polish
 - Fixed: posters disappeared on mouse hover in every card grid (Jellyfin 12 overlay link inherited the opaque card background)
 - Details: gradient Play/Resume, glass secondary buttons, lavender tagline, readable overview, violet external-link chips, tinted info panels, section headings matching home, ring on cast photos

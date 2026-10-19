@@ -35,6 +35,27 @@ or the earlier working v0.6.1 version:
 @import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@2bb4583dc36a057a9e360f9da8cc82bbd614e620/theme.css");
 ```
 
+## Optional: SAKO layout module
+
+`layout.css` moves the page closer to the SAKO Cinema mockup: a left sidebar built from Jellyfin's own library navigation, a full-width home hero with the library tiles laid over its lower edge, a tile grid for My Media, and panel-style Continue Watching cards. Add it as a **second** line, below the theme:
+
+```css
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme/theme.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme/layout.css");
+```
+
+Delete the second line to return to the standard layout. Nothing else changes.
+
+How it behaves on different devices:
+
+- **Desktop, 1100px and wider:** sidebar on the left. The sidebar is hidden in the video player.
+- **Tablet and phone:** the standard Jellyfin top bar or menu stays. The hero runs edge to edge and the library tiles wrap into 2–3 columns.
+- **Jellyfin TV layout** (`layout-tv`, remote/D-pad navigation): no sidebar, so remote navigation behaves as in stock Jellyfin.
+- **Native Jellyfin apps on Android TV, Fire TV and Google TV:** custom CSS is ignored. Only the library artwork stored on the server carries over.
+- **Browsers without CSS `:has()`** (for example an older Jellyfin Media Player): no sidebar, the standard top bar stays.
+
+The home styling assumes Jellyfin's default section order: **My Media** first, **Continue Watching** second (Settings → Home).
+
 ## What is included
 
 - Clean CSS with one set of rules for home hero, card visuals, progress and headings

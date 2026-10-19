@@ -1,0 +1,107 @@
+/*
+ SAKO CINEMA — optional layout module (requires theme.css).
+ Sidebar navigation, full-bleed home hero, library tile grid, panel cards.
+ Remove this import to return to the standard Jellyfin layout.
+ Desktop sidebar only from 1100px; never in Jellyfin's TV layout (D-pad navigation).
+*/
+:root {--sako-sidebar:248px}
+
+/* ---------- Sidebar: the existing top library nav, re-flowed vertically ----------
+ Applies only while that nav is actually rendered (not in the video player) and only where
+ :has() is supported; older engines keep the standard top bar. */
+@media (min-width:1100px) {
+@supports selector(:has(a)) {
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .MuiAppBar-root {
+  backdrop-filter:none!important; /* a filter would trap the fixed sidebar inside the header */
+  background:transparent!important;border-bottom:0!important;box-shadow:none!important;
+  padding-left:var(--sako-sidebar)!important
+ }
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child {
+  position:fixed;inset:0 auto 0 0;width:var(--sako-sidebar);z-index:1200;
+  flex-direction:column!important;align-items:stretch!important;gap:4px;
+  padding:26px 16px;overflow-y:auto;box-sizing:border-box;
+  background:linear-gradient(180deg,#0d1430 0%,#0a1024 100%);
+  border-right:1px solid rgba(135,133,221,.16)
+ }
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a {
+  justify-content:flex-start!important;gap:6px;margin:0!important;
+  padding:11px 16px!important;border-radius:12px!important;border:1px solid transparent!important;
+  font-size:.98rem!important;font-weight:550;text-transform:none!important;
+  color:#c9d1ec!important;white-space:normal;text-align:left;line-height:1.25
+ }
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a svg {font-size:1.35rem!important;color:#9fb0e8}
+ /* first entry is the server name / home link */
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a:first-child {
+  font-size:1.3rem!important;font-weight:750;color:#fff!important;margin-bottom:18px!important;padding-left:10px!important
+ }
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a:not(:first-child):hover {background:rgba(71,125,255,.12)!important;color:#fff!important}
+ /* current library: MUI marks the active link with colorPrimary */
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a.MuiButton-colorPrimary:not(:first-child) {
+  background:linear-gradient(100deg,rgba(71,125,255,.30),rgba(128,93,228,.34))!important;
+  border-color:rgba(160,140,255,.75)!important;color:#fff!important;
+  box-shadow:0 0 18px rgba(128,93,228,.35),inset 0 0 12px rgba(128,93,228,.18)
+ }
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a.MuiButton-colorPrimary svg {color:#fff}
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) main {margin-left:var(--sako-sidebar)!important;width:auto!important}
+ /* Jellyfin sizes grid cards as a % of the viewport; with the sidebar that leaves a gap, so use a real grid */
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .itemsContainer.vertical-wrap {
+  display:grid!important;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));column-gap:4px
+ }
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .itemsContainer.vertical-wrap:has(> .squareCard) {grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .itemsContainer.vertical-wrap:has(> .backdropCard) {grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .itemsContainer.vertical-wrap > .card {width:auto!important}
+ /* header is transparent here, so let the hero run up behind it */
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) #homeTab .homeSectionsContainer::before,
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) #homeTab > .sections::before {margin-top:-48px!important}
+}
+}
+
+/* ---------- Home: full-bleed hero, tiles overlap its lower edge ---------- */
+@media (min-width:701px) {
+ #homeTab .homeSectionsContainer::before,#homeTab > .sections::before {
+  width:100%!important;max-width:none!important;margin:-1px 0 -7% 0!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  background:url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@058dee4adcf09a68100ed5e4f342b98eccb60f84/artwork/family-cinema-hero.jpg") center/cover no-repeat!important;
+  /* fade into whatever background sits underneath, no hard edge */
+  -webkit-mask-image:linear-gradient(180deg,#000 58%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 58%,transparent 100%)
+ }
+ #homeTab .section0 {position:relative;z-index:1}
+}
+
+/* ---------- Home: "My Media" as a tile grid instead of a scroller ---------- */
+#homeTab .section0 .emby-scrollbuttons,#homeTab .section0 > .sectionTitle {display:none!important}
+#homeTab .section0 .emby-scroller {overflow:visible!important}
+#homeTab .section0 .itemsContainer {
+ display:grid!important;transform:none!important;white-space:normal!important;
+ /* at most six tiles per row, never narrower than 240px */
+ grid-template-columns:repeat(auto-fit,minmax(max(240px,calc((100% - 5 * 20px) / 6)),1fr));gap:20px;
+ box-sizing:border-box;width:100%!important;padding-right:3.3%!important /* mirrors the scroller's 3.3% left indent */
+}
+#homeTab .section0 .card {width:auto!important;margin:0!important}
+#homeTab .section0 .cardBox {margin:0!important}
+#homeTab .section0 .cardScalable {
+ outline:1px solid rgba(150,140,255,.38)!important;
+ box-shadow:0 12px 34px rgba(0,0,0,.45),0 0 22px rgba(110,80,230,.12)!important
+}
+#homeTab .section0 .cardFooter {display:none}
+@media (max-width:700px) {
+ #homeTab .section0 .itemsContainer {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+}
+
+/* ---------- Home: larger section headings ---------- */
+#homeTab .verticalSection > .sectionTitle,
+#homeTab .sectionTitleContainer .sectionTitle,
+#homeTab .sectionTitleContainer .sectionTitleTextButton {font-size:1.4rem!important}
+
+/* ---------- Continue Watching: footer sits in a panel under the thumbnail ---------- */
+#homeTab .section1 .cardBox {
+ background:rgba(21,29,51,.82)!important;border:1px solid rgba(142,147,221,.22)!important;
+ border-radius:15px!important;overflow:hidden!important
+}
+#homeTab .section1 .cardScalable {border-radius:0!important;outline:0!important;box-shadow:none!important}
+#homeTab .section1 .cardImageContainer {border-radius:0!important}
+/* Jellyfin puts cardText directly in cardBox here (no cardFooter) */
+#homeTab .section1 .cardText {text-align:left!important;padding-left:.85rem!important;padding-right:.85rem!important}
+#homeTab .section1 .cardText-first {padding-top:.6rem!important}
+#homeTab .section1 .cardBox > .cardText:last-child {padding-bottom:.65rem!important}
