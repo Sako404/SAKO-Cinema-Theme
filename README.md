@@ -75,7 +75,7 @@ The text is free-form, punctuation included. A complete Custom CSS, as used on t
 :root {
   --sako-hero-kicker: "Welcome home";
   --sako-hero-title: "SAKO Cinema";
-  --sako-hero-subtitle: "Movies - Shows - Music - Memories.";
+  --sako-hero-subtitle: "Movies · Shows · Music · Memories";
   --sako-hero-tagline: "Our favourite stories, together.";
 }
 ```
