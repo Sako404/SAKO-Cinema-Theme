@@ -1,5 +1,5 @@
 /*
- * SAKO Cinema Theme — preview v0.3.1
+ * SAKO Cinema Theme — preview v0.3.2
  * Family-first Jellyfin Web styling.
  * License: MIT. ElegantFin is a separate upstream dependency.
  * This theme changes presentation only; Jellyfin enforces library permissions.
@@ -225,28 +225,24 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   .mainDrawer:not(.drawer-open) { width: auto; }
 }
 
-/* v0.3.1 — restore consistent section title inset.
-   On Jellyfin home, titles are not always inside the same padded container as cards.
-   Earlier v0.3 forced title padding to zero and broke Next Up / Recently Added. */
-@media (min-width: 701px) {
-  #homeTab .verticalSection > .sectionTitleContainer,
-  #homeTab .verticalSection .sectionTitleContainer {
-    box-sizing: border-box !important;
-    padding-left: clamp(24px, 3.3vw, 60px) !important;
-    padding-right: clamp(24px, 3.3vw, 60px) !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-}
-@media (max-width: 700px) {
-  #homeTab .verticalSection .sectionTitleContainer {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-}
-/* Avoid resetting the title's internal left padding in any other section. */
-#homeTab .sectionTitleContainer .sectionTitle,
-#homeTab .sectionTitleContainer .sectionTitleTextButton {
-  border: 0 !important;
+/* v0.3.2 — normalise header gutters without double-insetting.
+   Jellyfin's padded-left containers already provide the home page gutter.
+   Unpadded sections receive the same gutter; nested/padded ones do not. */
+#homeTab .verticalSection .sectionTitleContainer {
+  box-sizing: border-box !important;
   margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+#homeTab .verticalSection:not(.padded-left) > .sectionTitleContainer {
+  padding-left: clamp(24px, 3.3vw, 60px) !important;
+}
+#homeTab .verticalSection.padded-left > .sectionTitleContainer {
+  padding-left: 0 !important;
+}
+@media (max-width:700px) {
+  #homeTab .verticalSection:not(.padded-left) > .sectionTitleContainer {
+    padding-left: 16px !important;
+  }
 }
