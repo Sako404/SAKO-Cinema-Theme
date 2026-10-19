@@ -1,10 +1,11 @@
 /*
- SAKO CINEMA — v1.0.0 candidate
+ SAKO CINEMA — v1.0.0 candidate (rc2)
  Jellyfin Web / ElegantFin.
  Original code MIT; ElegantFin remains an independent upstream dependency.
  Permanent library JPGs are managed inside Jellyfin — CSS never replaces them.
 */
-@import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+/* ElegantFin pinned to release v26.09.05 (immutable commit) — byte-identical to main as tested 2026-10-19. */
+@import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@5efc1105e9a56424d2252d73c04cafe484fb9e92/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 
 :root {
  --sako-bg:#090e1b; --sako-panel:#151d33; --sako-elevated:#202944;
@@ -13,11 +14,18 @@
  --sako-focus:#90caff; --primary-accent-color:#805de4;
  --sako-gradient:linear-gradient(105deg,#477dff 0%,#805de4 64%,#b75fd0 100%);
 }
-html,body,.skinBody {background-color:var(--sako-bg)!important;color:var(--sako-text)}
+html {background-color:var(--sako-bg)!important}
+/* body must stay transparent (Jellyfin core rule): item backdrops sit behind it at z-index:-1 */
+html,body,.skinBody {color:var(--sako-text)}
 .backgroundContainer {
  background-color:var(--sako-bg)!important;
  background-image:radial-gradient(ellipse at 88% 8%,rgba(105,72,196,.16),transparent 48%),radial-gradient(ellipse at 10% 85%,rgba(42,111,205,.08),transparent 53%)!important;
  background-attachment:fixed
+}
+/* Detail pages: let Jellyfin's item backdrop show through a navy scrim */
+.backgroundContainer.withBackdrop {
+ background-color:rgba(9,14,27,.78)!important;
+ background-image:linear-gradient(180deg,rgba(9,14,27,.35) 0%,rgba(9,14,27,.82) 55%,var(--sako-bg) 100%)!important
 }
 /* Navigation: retain the working top navigation and normal drawer behaviour */
 .skinHeader,.skinHeader-withBackground,.headerTop {
@@ -65,6 +73,11 @@ html,body,.skinBody {background-color:var(--sako-bg)!important;color:var(--sako-
 #homeTab .sectionTitleContainer .sectionTitle,
 #homeTab .sectionTitleContainer .sectionTitleTextButton {
  padding-left:0!important;border:0!important;
+ font-size:1.15rem!important;line-height:1.45!important;
+ font-weight:750!important;letter-spacing:-.02em;color:#f0f2ff!important
+}
+/* My Media / Continue Watching render a bare h2.padded-left: match typography only, keep Jellyfin padding */
+#homeTab .verticalSection > .sectionTitle {
  font-size:1.15rem!important;line-height:1.45!important;
  font-weight:750!important;letter-spacing:-.02em;color:#f0f2ff!important
 }
