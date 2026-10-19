@@ -1,394 +1,154 @@
 /*
- * SAKO Cinema Theme — v0.6.0
- * Family-first Jellyfin Web styling.
- * License: MIT. ElegantFin is a separate upstream dependency.
- * This theme changes presentation only; Jellyfin enforces library permissions.
- */
+ SAKO CINEMA — v1.0.0 candidate
+ Jellyfin Web / ElegantFin.
+ Original code MIT; ElegantFin remains an independent upstream dependency.
+ Permanent library JPGs are managed inside Jellyfin — CSS never replaces them.
+*/
 @import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 
 :root {
-  --sako-bg: #090d18;
-  --sako-surface: #151c30;
-  --sako-surface-raised: #202943;
-  --sako-blue: #477dff;
-  --sako-violet: #805de4;
-  --sako-magenta: #c468d9;
-  --sako-text: #f2f4fa;
-  --sako-muted: #aab6cf;
-  --sako-focus: #86bbff;
-  --sako-gradient: linear-gradient(110deg, #477dff 0%, #805de4 64%, #c468d9 100%);
-  --primary-accent-color: #805de4;
+ --sako-bg:#090e1b; --sako-panel:#151d33; --sako-elevated:#202944;
+ --sako-blue:#477dff; --sako-violet:#805de4; --sako-pink:#c468d9;
+ --sako-text:#f2f4fa; --sako-muted:#acb9d7;
+ --sako-focus:#90caff; --primary-accent-color:#805de4;
+ --sako-gradient:linear-gradient(105deg,#477dff 0%,#805de4 64%,#b75fd0 100%);
 }
-html, body, .skinBody, .backgroundContainer { background-color: var(--sako-bg) !important; color: var(--sako-text); }
+html,body,.skinBody {background-color:var(--sako-bg)!important;color:var(--sako-text)}
 .backgroundContainer {
-  background-image: radial-gradient(ellipse at 90% 10%, rgba(100,61,183,.15), transparent 48%),
-                    radial-gradient(ellipse at 10% 85%, rgba(37,104,216,.10), transparent 50%) !important;
-  background-attachment: fixed;
+ background-color:var(--sako-bg)!important;
+ background-image:radial-gradient(ellipse at 88% 8%,rgba(105,72,196,.16),transparent 48%),radial-gradient(ellipse at 10% 85%,rgba(42,111,205,.08),transparent 53%)!important;
+ background-attachment:fixed
 }
-.skinHeader, .skinHeader-withBackground {
-  background: rgba(9, 13, 24, .90) !important;
-  border-bottom: 1px solid rgba(136,149,228,.13);
+/* Navigation: retain the working top navigation and normal drawer behaviour */
+.skinHeader,.skinHeader-withBackground,.headerTop {
+ background-color:rgba(11,17,33,.96)!important;
+ border-bottom:1px solid rgba(135,133,221,.19)!important;
 }
-.headerTabs, .mainDrawer, .dialog, .formDialogHeader, .formDialogFooter {
-  background-color: rgba(15, 21, 38, .96);
+.headerTop {background-image:linear-gradient(95deg,rgba(43,65,110,.14),rgba(117,69,167,.09))!important}
+.mainDrawer,.dialog,.formDialogHeader,.formDialogFooter {background-color:#121b31!important}
+.mainDrawer {border-right:1px solid rgba(130,125,211,.20)}
+.navMenuOption,.emby-tab-button {transition:background-color .18s ease,color .18s ease}
+.navMenuOption-selected,.navMenuOption:hover,.emby-tab-button-active {
+ background:linear-gradient(90deg,rgba(71,125,255,.19),rgba(128,93,228,.22))!important;
+ color:#f7f6ff!important;
+ border-radius:11px;
 }
-.mainDrawer { border-right: 1px solid rgba(141, 134, 231, .15); }
-.navMenuOption-selected, .navMenuOption:hover,
-.emby-tab-button-active, .emby-tab-button:hover {
-  color: #fff !important;
-  background: linear-gradient(95deg,rgba(71,125,255,.21),rgba(128,93,228,.26)) !important;
-  border-radius: 12px;
-}
-.emby-tab-button-active { border-bottom: 2px solid var(--sako-violet); }
-.sectionTitle, .sectionTitleTextButton, .pageTitle { color: var(--sako-text); }
-.secondaryText, .cardText-secondary, .listItemBodyText { color: var(--sako-muted) !important; }
-.cardBox { border-radius: 14px; transition: transform .20s ease, filter .20s ease; }
-.cardScalable, .cardImageContainer { border-radius: 13px; overflow: hidden; }
-.cardImageContainer { background-color: var(--sako-surface); }
-@media (hover:hover) and (pointer:fine) {
-  .cardBox:hover { transform: translateY(-4px); filter: brightness(1.08); }
-}
-.cardOverlayButton, .emby-button, .raised { transition: background-color .18s ease, box-shadow .18s ease; }
-.raised.button-submit, .button-submit, .emby-button.submit, .fab {
-  background: var(--sako-gradient) !important;
-  color: white !important;
-  border-radius: 12px;
-}
-.emby-button:focus-visible, .card:focus-visible, .cardBox:focus-within,
-button:focus-visible, a:focus-visible, input:focus-visible {
-  outline: 3px solid var(--sako-focus) !important;
-  outline-offset: 2px;
-}
-.itemProgressBarForeground, .mdl-slider-background-lower, .progressring-spiner {
-  background: var(--sako-gradient) !important;
-}
-.cardFooter, .visualCardBox { background-color: transparent; }
-.paperList, .listItem:hover, .overview, .detailPageWrapperContainer { border-radius: 12px; }
-::-webkit-scrollbar { width: 9px; height: 9px; }
-::-webkit-scrollbar-thumb { background: #554580; border-radius: 10px; }
-@media (max-width: 600px) {
-  .cardBox { border-radius: 10px; }
-  .cardScalable, .cardImageContainer { border-radius: 9px; }
-  .skinHeader, .skinHeader-withBackground { backdrop-filter: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-}
-
-
-/* ===== SAKO Cinema v0.2: actual home-page treatment ===== */
-/* Visible feature banner; only on the library home screen. */
+.emby-tab-button-active {border-bottom:2px solid var(--sako-violet)!important}
+/* Hero — source 2290×687 (10:3). Never force a fixed height. */
 #homeTab .homeSectionsContainer::before,
-#homeTab .homeSectionsContainer::before {
-  content: "";
-  display: block;
-  width: calc(100% - 2.5rem);
-  max-width: 1660px;
-  height: clamp(180px, 27vw, 440px);
-  margin: 1.2rem auto 2.25rem;
-  border: 1px solid rgba(142,116,255,.65);
-  border-radius: 25px;
-  background-color: #111a35;
-  background-image: url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/artwork/family-cinema-hero.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 24px 60px rgba(0,0,0,.44), 0 0 35px rgba(95,62,194,.10);
-}
-/* Alternative Jellyfin home markup used by some builds */
 #homeTab > .sections::before {
-  content: "";
-  display: block;
-  min-height: clamp(170px, 26vw, 400px);
-  margin: 1rem auto 2rem;
-  border-radius: 24px;
-  background: #121b36 url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/artwork/family-cinema-hero.jpg") center / cover no-repeat;
-  border: 1px solid rgba(142,116,255,.45);
+ content:"";
+ display:block!important;
+ box-sizing:border-box!important;
+ width:min(calc(100% - 2rem),1600px)!important;
+ max-width:1600px!important;
+ aspect-ratio:10/3!important;
+ height:auto!important; min-height:0!important; max-height:none!important;
+ margin:1rem auto 1.7rem!important;
+ border-radius:22px!important;
+ border:1px solid rgba(143,135,247,.48)!important;
+ background:#111a35 url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@058dee4adcf09a68100ed5e4f342b98eccb60f84/artwork/family-cinema-hero.jpg") center/100% 100% no-repeat!important;
+ box-shadow:0 20px 52px rgba(0,0,0,.37),0 0 30px rgba(100,73,215,.075)!important;
 }
-/* Keep the banner's artwork decorative: no personal media URLs in public CSS. */
-#homeTab .verticalSection { margin-bottom: 1.4rem; }
+/* Home layout: retain previously user-tested heading alignment. */
+#homeTab .verticalSection {margin-bottom:1.8rem!important}
 #homeTab .sectionTitleContainer {
-  margin-top: 1.1rem;
-  margin-bottom: .65rem;
-  padding-left: .35rem;
-  border-left: 3px solid #805de4;
-}
-#homeTab .sectionTitle {
-  font-weight: 750 !important;
-  letter-spacing: -.025em;
-  font-size: clamp(1.15rem, 1.5vw, 1.6rem);
-}
-#homeTab .itemsContainer, #homeTab .emby-scroller {
-  scrollbar-color: #5947aa transparent;
-}
-#homeTab .cardImageContainer,
-#homeTab .cardScalable {
-  border: 1px solid rgba(125,140,222,.24);
-  box-shadow: 0 10px 30px rgba(0,0,0,.27);
-}
-#homeTab .card:hover .cardImageContainer,
-#homeTab .card:focus-within .cardImageContainer {
-  border-color: #7b83ff;
-  box-shadow: 0 0 0 2px rgba(71,125,255,.68), 0 12px 35px rgba(91,55,200,.28);
-}
-#homeTab .cardText { font-weight: 600; color: #f2f4ff; }
-#homeTab .cardText-secondary { font-size: .9em; }
-
-/* A more recognizable navigation rail, without changing server navigation. */
-@media (min-width: 1100px) {
-  .mainDrawer { width: min(19vw, 290px); }
-  .mainDrawer .navMenuOption {
-    margin: 4px 10px;
-    padding: 12px 15px;
-    border-radius: 13px;
-    min-height: 48px;
-    transition: background-color .2s ease, box-shadow .2s ease;
-  }
-  .mainDrawer .navMenuOption-selected {
-    border: 1px solid rgba(126,102,255,.65);
-    box-shadow: inset 3px 0 0 #477dff, 0 0 18px rgba(109,76,239,.12);
-  }
-}
-.cardBox {
-  background: linear-gradient(180deg, rgba(24,34,62,.86), rgba(10,15,30,.98));
-  border: 1px solid rgba(115,128,210,.17);
-  box-shadow: 0 6px 22px rgba(0,0,0,.24);
-  overflow: hidden;
-}
-.cardImageContainer {
-  box-shadow: inset 0 -36px 46px rgba(5,9,22,.22);
-}
-.cardText { letter-spacing: -.01em; }
-@media (min-width: 760px) {
-  .padded-left { padding-left: clamp(1.2rem, 2.4vw, 3rem); }
-  .padded-right { padding-right: clamp(1.2rem, 2.4vw, 3rem); }
-}
-@media (max-width: 700px) {
-  #homeTab .homeSectionsContainer::before, #homeTab > .sections::before {
-    background-position: 60% center;
-    height: 190px;
-    min-height: 190px;
-    border-radius: 15px;
-    margin: .55rem auto 1.25rem;
-    width: calc(100% - 1rem);
-  }
-}
-
-/* v0.3: layout stabilisation on actual SAKO Jellyfin home */
-#homeTab .sectionTitleContainer {
-  border-left: 0 !important;
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-  margin-top: 1.35rem !important;
-  margin-bottom: .7rem !important;
-  min-height: 30px;
-}
-#homeTab .sectionTitleContainer .sectionTitle,
-#homeTab .sectionTitleContainer .sectionTitleTextButton {
-  padding-left: 0 !important;
-  border-left: 0 !important;
-  line-height: 1.45 !important;
-  font-size: 1.15rem !important;
-}
-#homeTab .verticalSection {
-  margin-bottom: 1.8rem !important;
-}
-/* Keep carousels and progress artwork fully inside the card. */
-#homeTab .cardBox {
-  overflow: visible !important;
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-#homeTab .cardScalable {
-  border-radius: 12px !important;
-  overflow: hidden !important;
-}
-#homeTab .cardFooter {
-  padding: .3rem .25rem .45rem !important;
-}
-#homeTab .cardText {
-  font-size: .94em;
-  line-height: 1.3;
-}
-#homeTab .cardText-secondary { font-size: .84em !important; }
-#homeTab .itemsContainer { align-items: flex-start; }
-#homeTab .card:focus-within { z-index: 2; }
-/* Reduce large empty gaps introduced by inherited layout rules. */
-#homeTab .verticalSection .sectionTitleContainer + .emby-scroller,
-#homeTab .verticalSection .sectionTitleContainer + .itemsContainer {
-  margin-top: 0 !important;
-}
-/* Keep the existing desktop top navigation intact. */
-@media (min-width: 1100px) {
-  .headerTop { min-height: 48px; }
-  .mainDrawer:not(.drawer-open) { width: auto; }
-}
-
-/* v0.3.2 — normalise header gutters without double-insetting.
-   Jellyfin's padded-left containers already provide the home page gutter.
-   Unpadded sections receive the same gutter; nested/padded ones do not. */
-#homeTab .verticalSection .sectionTitleContainer {
-  box-sizing: border-box !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+ border:0!important;min-height:30px;
+ margin-top:1.35rem!important;margin-bottom:.72rem!important;
+ margin-left:0!important;margin-right:0!important;
+ padding:0!important;box-sizing:border-box!important
 }
 #homeTab .verticalSection:not(.padded-left) > .sectionTitleContainer {
-  padding-left: clamp(24px, 3.3vw, 60px) !important;
+ padding-left:clamp(24px,3.3vw,60px)!important;
 }
-#homeTab .verticalSection.padded-left > .sectionTitleContainer {
-  padding-left: 0 !important;
+#homeTab .verticalSection.padded-left > .sectionTitleContainer {padding-left:0!important}
+#homeTab .sectionTitleContainer .sectionTitle,
+#homeTab .sectionTitleContainer .sectionTitleTextButton {
+ padding-left:0!important;border:0!important;
+ font-size:1.15rem!important;line-height:1.45!important;
+ font-weight:750!important;letter-spacing:-.02em;color:#f0f2ff!important
+}
+@media (min-width:701px) {
+ #homeTab .sectionTitleContainer .sectionTitleTextButton {margin-left:24px!important}
+}
+#homeTab .sectionTitleTextButton:hover {color:#bdadff!important}
+#homeTab .itemsContainer,#homeTab .emby-scroller {scrollbar-color:#5947aa transparent}
+#homeTab .verticalSection .sectionTitleContainer + .emby-scroller,
+#homeTab .verticalSection .sectionTitleContainer + .itemsContainer {margin-top:0!important}
+/* Cards: NEVER set background shorthand or background-image on cardImageContainer.
+   Jellyfin itself renders image URLs here. */
+.cardScalable,.cardImageContainer {border-radius:14px;overflow:hidden}
+.cardImageContainer {background-color:#121a32!important}
+#homeTab .cardBox {
+ overflow:visible!important;
+ border:0!important;background:transparent!important;box-shadow:none!important
+}
+#homeTab .cardScalable {
+ border-radius:15px!important;overflow:hidden!important;
+ outline:1px solid rgba(142,147,221,.26);outline-offset:-1px;
+ box-shadow:0 7px 25px rgba(0,0,0,.30)!important;
+ transition:transform .2s ease,box-shadow .2s ease,outline-color .2s ease
+}
+#homeTab .cardImageContainer {border-radius:15px!important}
+#homeTab .cardImageContainer::after {content:none!important}
+#homeTab .cardFooter {padding:.3rem .25rem .45rem!important;background:transparent}
+#homeTab .cardText {font-weight:600;color:#eff1ff;line-height:1.3}
+#homeTab .cardText-secondary,.secondaryText,.listItemBodyText {color:var(--sako-muted)!important}
+#homeTab .itemsContainer {align-items:flex-start}
+#homeTab .card:focus-within {z-index:2}
+@media (hover:hover) and (pointer:fine) {
+ #homeTab .card:hover .cardScalable,#homeTab .card:focus-within .cardScalable {
+  transform:translateY(-3px);
+  outline-color:rgba(137,131,255,.72);
+  box-shadow:0 14px 35px rgba(0,0,0,.44),0 0 0 2px rgba(130,103,233,.52)!important
+ }
+}
+/* Browse and details — visual finishes only; leave media dimensions unmodified */
+.libraryPage .cardScalable,.libraryPage .cardImageContainer {border-radius:13px}
+.detailPageWrapperContainer,.overview,.paperList {border-radius:14px}
+.detailPagePrimaryContainer .itemName,.detailPagePrimaryContainer .parentName,
+.itemDetailPage .itemName {color:var(--sako-text);letter-spacing:-.02em}
+.itemDetailPage .detailButton,.itemDetailPage .emby-button {
+ border-radius:12px;
+}
+.itemBackdrop::after {pointer-events:none}
+.paperList,.formDialogContent,.dialogContent {background-color:var(--sako-panel)}
+/* Buttons and controls */
+.raised.button-submit,.button-submit,.emby-button.submit,.fab {
+ background:var(--sako-gradient)!important;color:white!important;border-radius:12px
+}
+.cardOverlayButton,.emby-button,.raised {transition:background-color .18s ease,box-shadow .18s ease}
+.raised:hover,.emby-button:hover {box-shadow:0 4px 18px rgba(108,85,219,.18)}
+.emby-input,.emby-textarea,.emby-select {
+ border-radius:9px;background-color:var(--sako-panel);color:var(--sako-text)
+}
+.emby-input:focus,.emby-textarea:focus {border-color:var(--sako-blue)}
+/* Progress, focus, typography */
+.itemProgressBarForeground,.mdl-slider-background-lower {
+ background:var(--sako-gradient)!important
+}
+.itemProgressBar {border-radius:20px;overflow:hidden}
+.sectionTitle,.sectionTitleTextButton,.pageTitle {color:var(--sako-text)}
+.emby-button:focus-visible,.card:focus-visible,.cardBox:focus-within,
+button:focus-visible,a:focus-visible,input:focus-visible {
+ outline:3px solid var(--sako-focus)!important;outline-offset:2px
+}
+::-webkit-scrollbar {width:9px;height:9px}
+::-webkit-scrollbar-thumb {background:#554580;border-radius:10px}
+/* Player: retain native controls and overlays, recolour only accents. */
+.videoOsdBottom .emby-button:focus-visible,.videoOsdBottom button:focus-visible {
+ outline:3px solid var(--sako-focus)!important
 }
 @media (max-width:700px) {
-  #homeTab .verticalSection:not(.padded-left) > .sectionTitleContainer {
-    padding-left: 16px !important;
-  }
-}
-
-/* v0.3.3: clickable home section headings (Next Up, Recently Added)
-   appear 24px left of static headings in the user's Jellyfin build.
-   Adjust only the text/button, without changing card widths or scroller gutters. */
-@media (min-width: 701px) {
-  #homeTab .sectionTitleContainer .sectionTitleTextButton {
-    margin-left: 24px !important;
-  }
-}
-@media (max-width: 700px) {
-  #homeTab .sectionTitleContainer .sectionTitleTextButton {
-    margin-left: 0 !important;
-  }
-}
-
-/* ===== v0.4.0 — family cinema visual refinement =====
-   Preserves v0.3.3 section headings and scroller geometry. */
-#homeTab .homeSectionsContainer::before,
-#homeTab > .sections::before {
-  border: 1px solid rgba(143, 135, 247, .48) !important;
-  box-shadow: 0 18px 45px rgba(0,0,0,.30), 0 0 30px rgba(100,73,215,.07) !important;
-}
-#homeTab .cardScalable {
-  outline: 1px solid rgba(151,163,248,.13);
-  outline-offset: -1px;
-  transition: box-shadow .2s ease, outline-color .2s ease, filter .2s ease;
-}
-@media (hover:hover) and (pointer:fine) {
-  #homeTab .card:hover .cardScalable {
-    outline-color: rgba(137,131,255,.72);
-    box-shadow: 0 8px 26px rgba(14,15,39,.5), 0 0 0 1px rgba(128,93,228,.35);
-  }
-}
-#homeTab .itemProgressBarForeground,
-#homeTab .itemProgressBarForeground .progressbar {
-  background: linear-gradient(90deg,#477dff,#8060e9,#bd6dce) !important;
-}
-#homeTab .cardText-first {
-  color: #eff1ff !important;
-}
-#homeTab .cardText-secondary {
-  color: #aebadb !important;
-}
-#homeTab .sectionTitleButton, #homeTab .sectionTitleTextButton {
-  transition: color .2s ease;
-}
-#homeTab .sectionTitleButton:hover,
-#homeTab .sectionTitleTextButton:hover {
-  color: #bdb0ff !important;
-}
-.headerTop {
-  border-bottom: 1px solid rgba(105,112,200,.20) !important;
-  background: linear-gradient(90deg,#0d1424,#161831 70%,#101a2c) !important;
+ #homeTab .homeSectionsContainer::before,#homeTab > .sections::before {
+  width:calc(100% - 1rem)!important;border-radius:12px!important;
+  margin:.65rem auto 1.1rem!important
+ }
+ #homeTab .verticalSection:not(.padded-left) > .sectionTitleContainer {padding-left:16px!important}
+ #homeTab .sectionTitleContainer .sectionTitleTextButton {margin-left:0!important}
+ #homeTab .cardScalable,#homeTab .cardImageContainer {border-radius:10px!important}
+ .skinHeader,.skinHeader-withBackground {backdrop-filter:none}
 }
 @media (prefers-reduced-motion:reduce) {
-  #homeTab .cardScalable { transition: none !important; }
-}
-
-/* v0.4.1 — aspect-ratio-correct hero, no cropping on desktop.
-   Source artwork is 1600x480 (10:3). This replaces hard-coded heights.
-   This also overrides any earlier cover-position rules in the theme. */
-#homeTab .homeSectionsContainer::before,
-#homeTab > .sections::before {
-  box-sizing: border-box !important;
-  display: block !important;
-  width: min(calc(100% - 2rem), 1600px) !important;
-  max-width: 1600px !important;
-  aspect-ratio: 10 / 3 !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  background-size: 100% 100% !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  margin: 1rem auto 1.6rem !important;
-}
-@media (max-width: 700px) {
-  #homeTab .homeSectionsContainer::before,
-  #homeTab > .sections::before {
-    width: calc(100% - 1rem) !important;
-    aspect-ratio: 10 / 3 !important;
-    height: auto !important;
-    min-height: 0 !important;
-    border-radius: 12px !important;
-    margin: .65rem auto 1.1rem !important;
-  }
-}
-
-/* v0.5.1 — safe visual polish: never override artwork backgrounds.
-   Jellyfin uses background-image on .cardImageContainer for library images.
-   Explicit background shorthand with !important would erase them. */
-#homeTab .cardImageContainer {
-  background-color: #10192f !important;
-}
-#homeTab .cardImageContainer::after {
-  content: none !important;
-}
-#homeTab .cardScalable {
-  border-radius: 15px !important;
-  box-shadow: 0 8px 24px rgba(0,0,0,.19);
-}
-@media (hover:hover) and (pointer:fine) {
-  #homeTab .card:hover .cardScalable {
-    box-shadow: 0 14px 32px rgba(0,0,0,.3),0 0 0 1px rgba(120,96,230,.3);
-  }
-}
-
-/* ===== v0.6.0 — photographic cinematic banner =====
-   Preserve the user-approved v0.5.1 card and header alignment.
-   The JPEG is 2290x687, exactly 10:3, matching the existing banner geometry. */
-#homeTab .homeSectionsContainer::before,
-#homeTab > .sections::before {
-  background-image: url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/artwork/family-cinema-hero.jpg") !important;
-  aspect-ratio: 10 / 3 !important;
-  background-size: 100% 100% !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-}
-/* Artwork for libraries is intentionally not overridden by CSS:
-   assign JPGs via Jellyfin's library Primary image for TV compatibility. */
-
-/* ===== v0.6.1 safe cinema finish =====
-   Presentation only: no background-image override for library cards.
-   Keep home-section title positioning and library permissions untouched. */
-#homeTab .cardScalable {
-  box-shadow: 0 7px 25px rgba(0,0,0,.32) !important;
-  outline: 1px solid rgba(142,147,221,.28);
-  outline-offset: -1px;
-}
-#homeTab .cardImageContainer {
-  background-color: #121a32 !important;
-}
-@media (hover:hover) and (pointer:fine) {
-  #homeTab .card:hover .cardScalable {
-    box-shadow: 0 14px 35px rgba(0,0,0,.44),0 0 0 2px rgba(130,103,233,.52) !important;
-  }
-}
-#homeTab .itemProgressBarForeground {
-  background: linear-gradient(90deg,#36abfa,#715af0,#cc5fe2) !important;
-}
-#homeTab .sectionTitle, #homeTab .sectionTitleTextButton {
-  text-shadow: 0 1px 8px rgba(0,0,0,.14);
-}
-@media (prefers-reduced-motion:reduce) {
-  #homeTab .cardScalable {transition:none !important}
+ *,*::before,*::after {animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
