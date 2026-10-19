@@ -1,82 +1,128 @@
-# SAKO Cinema Theme 🎬
+<div align="center">
 
-Public, free family-oriented theme for **Jellyfin Web**, built on ElegantFin. Navy, blue, violet, magenta and cozy home cinema artwork. No gold.
+<img src="artwork/family-cinema-hero.jpg" alt="SAKO Cinema: a family watching a movie on the sofa in a cozy, neon-lit living room" width="100%">
 
-![SAKO Cinema hero](artwork/family-cinema-hero.jpg)
+# SAKO Cinema Theme
 
-## Install (single CSS import)
+**A cozy family-cinema look for Jellyfin Web.** Navy, electric blue, violet and magenta, with hand-made library artwork. No gold.
 
-In **Jellyfin Dashboard → Branding → Custom CSS**, replace existing custom CSS with:
+[![Release](https://img.shields.io/github/v/release/Sako404/SAKO-Cinema-Theme?style=flat-square&color=805de4&label=release)](https://github.com/Sako404/SAKO-Cinema-Theme/releases/latest)
+[![Jellyfin](https://img.shields.io/badge/Jellyfin%20Web-12.x-477dff?style=flat-square)](https://jellyfin.org)
+[![Based on ElegantFin](https://img.shields.io/badge/based%20on-ElegantFin-c468d9?style=flat-square)](https://github.com/lscambo13/ElegantFin)
+[![License: MIT](https://img.shields.io/badge/license-MIT-2b3a63?style=flat-square)](LICENSE)
 
-```css
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.1.0/theme.css");
-```
+</div>
 
-Save, then reload Jellyfin Web with Ctrl+Shift+R. This stylesheet already imports ElegantFin. Do not import ElegantFin a second time or paste the earlier v0.5 override blocks underneath.
+---
 
-Always import a **release tag** (for example `@v1.1.0`), never a branch. A tag is immutable, so every viewer gets exactly that release. To update, change the version number in both lines and reload with Ctrl+Shift+R. The current release is listed under [Tags](https://github.com/Sako404/SAKO-Cinema-Theme/tags).
+## Preview
 
-Do not use `@main` or an address without a version. jsDelivr caches which commit a branch points to separately on each edge server, and a purge does not reliably clear that. On 2026-10-19 `@main` served one browser a months-old `theme.css` while another location got the current one.
+<table>
+<tr>
+<td width="78%"><img src="docs/screenshots/home-desktop.jpg" alt="Desktop home page: sidebar navigation, full-width hero and a grid of library tiles"></td>
+<td width="22%"><img src="docs/screenshots/home-mobile.jpg" alt="Phone home page: hero banner and library tiles in two columns"></td>
+</tr>
+<tr>
+<td align="center"><sub>Desktop, with the optional layout module</sub></td>
+<td align="center"><sub>Phone</sub></td>
+</tr>
+</table>
 
-To freeze an exact commit instead of a tag:
+## Install in one minute
 
-```css
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@8402ea0f9e725cf9eed9defccfc5a79fab54b0a8/theme.css");
-```
-
-**Rollback:** previous release candidate (1.0.0-rc1):
-
-```css
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@0d6745cd7034b49b2213f4a1b8af988636fc8651/theme.css");
-```
-
-or the earlier working v0.6.1 version:
-
-```css
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@2bb4583dc36a057a9e360f9da8cc82bbd614e620/theme.css");
-```
-
-## Optional: SAKO layout module
-
-`layout.css` moves the page closer to the SAKO Cinema mockup: a left sidebar built from Jellyfin's own library navigation, a full-width home hero with the library tiles laid over its lower edge, a tile grid for My Media, and panel-style Continue Watching cards. Add it as a **second** line, below the theme:
+1. Open **Jellyfin → Dashboard → Branding → Custom CSS**.
+2. Replace its contents with:
 
 ```css
 @import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.1.0/theme.css");
 @import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.1.0/layout.css");
 ```
 
-Delete the second line to return to the standard layout. Nothing else changes.
+3. Save, then reload Jellyfin with **Ctrl+Shift+R**.
 
-How it behaves on different devices:
+The second line is **optional**. Leave it out to keep Jellyfin's standard layout with the SAKO colours and cards. `theme.css` already includes ElegantFin, so don't import ElegantFin separately.
 
-- **Desktop, 1100px and wider:** sidebar on the left. The sidebar is hidden in the video player.
-- **Tablet and phone:** the standard Jellyfin top bar or menu stays. The hero runs edge to edge and the library tiles wrap into 2–3 columns.
-- **Jellyfin TV layout** (`layout-tv`, remote/D-pad navigation): no sidebar, so remote navigation behaves as in stock Jellyfin.
-- **Native Jellyfin apps on Android TV, Fire TV and Google TV:** custom CSS is ignored. Only the library artwork stored on the server carries over.
-- **Browsers without CSS `:has()`** (for example an older Jellyfin Media Player): no sidebar, the standard top bar stays.
+> [!IMPORTANT]
+> Always import a **release tag** such as `@v1.1.0`, never `@main` and never an address without a version. jsDelivr can keep serving an old commit for a branch on some of its servers, even after a purge. Tags never change. To update, change the version number in both lines. Releases are listed under [Releases](https://github.com/Sako404/SAKO-Cinema-Theme/releases).
 
-The home styling assumes Jellyfin's default section order: **My Media** first, **Continue Watching** second (Settings → Home).
+## What you get
 
-## What is included
+| | `theme.css`: colours and cards | `layout.css`: optional layout |
+|---|---|---|
+| **Home** | Hero banner, aligned section headings, rounded cards with a violet edge and a hover glow | Left sidebar, edge-to-edge hero, library tiles over the hero, one panel style for every row |
+| **Libraries** | Gradient *Play All*, violet count chip and badges, card outline and glow | Grid that fills the full width next to the sidebar |
+| **Item details** | Backdrop visible behind a navy scrim, gradient *Play* button, glass action buttons, tinted info panels | n/a |
+| **Everywhere** | Visible keyboard focus, respects reduced-motion, mobile adjustments | Sidebar from 1100px; phones and tablets keep the normal menu |
 
-- Clean CSS with one set of rules for home hero, card visuals, progress and headings
-- Layout refinements for Jellyfin Web home, browse and detail pages
-- Focus visibility, mobile adjustments and reduced-motion preference
-- New cinematic family hero (JPG) and nine permanent cover images
-- [Library artwork](artwork/libraries/) and [artwork installation script](scripts/install-library-artwork.py)
+## Library artwork
 
-Original media-library covers should be assigned in Jellyfin as **Primary** images rather than replaced with CSS. They then persist through style updates and may be displayed by native TV clients.
+Nine matching covers for typical libraries: Movies, TV Shows, Music, Collections, Home Videos & Photos, Live TV, Playlists, a second movie drive and an adults-only library.
 
-## Scope and limitations
+<img src="artwork-contact-sheet.jpg" alt="Contact sheet of the nine library cover images" width="100%">
 
-The original mockup is a *visual design reference*, not a pixel-perfect Jellyfin implementation. This is **CSS layered on existing Jellyfin Web**, not a replacement web app. It preserves actual navigation and functionality; a different functional sidebar, new recommendations engine, or custom menu hierarchy would require client development rather than CSS.
+Set them as each library's **Primary** image in Jellyfin rather than overriding them with CSS. They then survive theme updates and also show up in the **native TV apps**. You can upload them by hand in the library image editor, or use the optional installer, which makes a dry run and a backup first. See [Library artwork setup](ARTWORK-DEPLOYMENT.md).
 
-Native Jellyfin apps on Fire TV/Google TV do not apply web CSS. Artwork is stored on the server and can carry across where the native clients support it.
+## Works on
 
-Jellyfin permissions must control access to private/adult libraries. CSS is not a security boundary. Never put API keys or private family photos in public repository content.
+| Client | Result |
+|---|---|
+| Desktop browser (Chrome, Edge) | Full theme and layout. Tested. |
+| Phone browser and the Jellyfin mobile apps | Theme plus mobile layout, without the sidebar. Confirmed working by the owner. |
+| Jellyfin web in TV mode (remote / D-pad) | Theme, without the sidebar, so remote navigation stays stock |
+| Native Android TV, Fire TV and Google TV apps | Custom CSS is ignored. You still get the **library artwork**. |
+| Firefox, Safari, Jellyfin Media Player | Not tested yet. Without CSS `:has()` support the sidebar stays off and the standard top bar is used. |
 
-**Release status:** v1.1.0. Tested on the owner's Jellyfin in desktop Chrome (home, library browse, item details, video player) and at 400 and 900px viewport widths. The owner confirmed it works on a phone. The login page keeps the base styling only. Not tested in Firefox, Safari or a TV browser. Native TV apps ignore custom CSS. ElegantFin is pinned to release v26.09.05 (commit `5efc110`), so the import is reproducible.
+## Recommended Jellyfin settings
 
-## Maintainers
+These are optional, but they get closest to the intended look:
 
-Original CSS/docs/artwork: MIT (see LICENSE). ElegantFin is a separate dependency under its upstream licence. Contributions and screenshots without sensitive information welcome.
+- **Settings → Home:** keep the section order *My Media*, *Continue Watching*, *Next Up*, *Recently Added*. The layout module expects My Media first and Continue Watching second.
+- **Settings → Home:** hide rarely used libraries from *My Media*, so six tiles fill one row.
+- **Settings → Home:** turn on *Use episode images in Next Up and Continue Watching* for wide thumbnails.
+- **Settings → Display:** turn on *Backdrops*, which the item details pages use.
+- **Dashboard → General:** set the *Server name* you want shown at the top of the sidebar.
+
+## Updating and rollback
+
+To update, change the tag in both lines (for example `@v1.1.0` → `@v1.2.0`) and reload with Ctrl+Shift+R.
+
+<details>
+<summary>Roll back to an earlier version</summary>
+
+1.0.0-rc1:
+
+```css
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@0d6745cd7034b49b2213f4a1b8af988636fc8651/theme.css");
+```
+
+0.6.1:
+
+```css
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@2bb4583dc36a057a9e360f9da8cc82bbd614e620/theme.css");
+```
+
+To freeze one exact commit instead of a tag, use its full SHA, for example `@8402ea0f9e725cf9eed9defccfc5a79fab54b0a8`.
+
+</details>
+
+## Limits
+
+- This is **CSS on top of Jellyfin Web**, not a separate app. The sidebar entries, their order and their names come from Jellyfin itself.
+- The **login page** keeps the base styling.
+- *Recently Added* shows movie posters in portrait format. Jellyfin chooses the image type, and CSS can't change it.
+- Jellyfin user permissions control who sees which library. **CSS is not a security boundary.**
+
+## Repository
+
+```
+theme.css                      colours, cards and pages (required)
+layout.css                     sidebar and home layout (optional)
+artwork/                       hero banner and library covers (JPG + SVG source)
+scripts/install-library-artwork.py   optional API installer for library covers
+docs/screenshots/              images used in this README
+CHANGELOG.md                   release notes
+```
+
+## Credits and license
+
+Original CSS, documentation and artwork are released under the MIT license (see [LICENSE](LICENSE)). [ElegantFin](https://github.com/lscambo13/ElegantFin) is a separate upstream project under its own license, pinned to release v26.09.05. Screenshots in this repository contain no private media. Please keep it that way in contributions.
