@@ -42,6 +42,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--url",default="http://127.0.0.1:30013",help="Jellyfin base URL accessible from where this script runs")
     g=p.add_mutually_exclusive_group(required=True)
+    g.add_argument("--diagnose",action="store_true",help="Check public and authenticated endpoints without changing anything")
     g.add_argument("--dry-run",action="store_true")
     g.add_argument("--apply",action="store_true")
     p.add_argument("--backup-dir",default="./sako-cinema-library-backup")
@@ -50,6 +51,17 @@ def main():
     print("Jellyfin:",base)
     key=getpass.getpass("Temporary Jellyfin API token (input hidden): ").strip()
     if not key: p.error("API token required")
+    if args.diagnose:
+        for label, path, tok in [("public", "/System/Info/Public", None), ("authentication", "/System/Info", key), ("libraries", "/Library/VirtualFolders", key)]:
+            try:
+                request(base+path, tok)
+                print(label + ": HTTP 200 (OK)")
+            except urllib.error.HTTPError as err:
+                print(label + ": HTTP " + str(err.code))
+            except Exception as err:
+                print(label + ": " + type(err).__name__)
+        print("Diagnosis complete. No changes made. Never share the API key.")
+        return
     try:
         raw,_=request(base+"/Library/VirtualFolders",key)
         folders=json.loads(raw)
