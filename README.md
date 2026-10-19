@@ -9,18 +9,19 @@ Public, free family-oriented theme for **Jellyfin Web**, built on ElegantFin. Na
 In **Jellyfin Dashboard → Branding → Custom CSS**, replace existing custom CSS with:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/theme.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.1.0-rc.1/theme.css");
 ```
 
 Save, then reload Jellyfin Web with Ctrl+Shift+R. This stylesheet already imports ElegantFin. Do not import ElegantFin a second time or paste the earlier v0.5 override blocks underneath.
 
-This address always follows the `main` branch. Use `@main` rather than leaving the version out: without a version, jsDelivr caches which commit counts as latest separately and a purge does not refresh it, so updates arrive without editing Jellyfin. Two things to know:
+Always import a **release tag** (for example `@v1.1.0-rc.1`), never a branch. A tag is immutable, so every viewer gets exactly that release. To update, change the version number in both lines and reload with Ctrl+Shift+R. The current release is listed under [Tags](https://github.com/Sako404/SAKO-Cinema-Theme/tags).
 
-- jsDelivr caches the file (CDN up to 12 h, browsers up to 7 days). After an update, reload with Ctrl+Shift+R. Maintainers can clear the CDN copy at `https://purge.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/theme.css`.
-- To freeze a specific version, pin a commit instead:
+Do not use `@main` or an address without a version. jsDelivr caches which commit a branch points to separately on each edge server, and a purge does not reliably clear that. On 2026-10-19 `@main` served one browser a months-old `theme.css` while another location got the current one.
+
+To freeze an exact commit instead of a tag:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@aee12516ab43d1b51dd6382d64324e863c1e2e54/theme.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@e2462dd34605658abbd2ff02506dd0904b5a81fc/theme.css");
 ```
 
 **Rollback:** previous release candidate (1.0.0-rc1):
@@ -40,8 +41,8 @@ or the earlier working v0.6.1 version:
 `layout.css` moves the page closer to the SAKO Cinema mockup: a left sidebar built from Jellyfin's own library navigation, a full-width home hero with the library tiles laid over its lower edge, a tile grid for My Media, and panel-style Continue Watching cards. Add it as a **second** line, below the theme:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/theme.css");
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/layout.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.1.0-rc.1/theme.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.1.0-rc.1/layout.css");
 ```
 
 Delete the second line to return to the standard layout. Nothing else changes.
