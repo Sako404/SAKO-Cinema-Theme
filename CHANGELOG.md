@@ -1,3 +1,10 @@
+## 0.6.0 — Cinematic art integrated
+- Verified 10 JPEG assets in repository: family hero and nine library images
+- Replaced old SVG family banner with photographic cinematic hero in one-import theme.css
+- Preserved previously tested card styles and section alignment
+- Library cover JPEGs intentionally require server-side assignment for native TV support
+- Browser verification of new theme pending
+
 ## 0.4.0 — Family visual refresh
 - More detailed original family movie-night SVG artwork, still public-safe and fictional
 - Refined hero border/shadow, cards, progress bars and navigation accents
