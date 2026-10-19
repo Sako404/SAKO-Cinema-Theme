@@ -2,9 +2,9 @@
 
 A free, open-source **family cinema look for Jellyfin Web**: deep navy, electric blue, violet, subtle magenta, cinema-style library cards, a family movie-night banner, and an optional standalone visual preview. Built on top of ElegantFin.
 
-**Current version:** 0.4.0 (preview / visually tested in Jellyfin Web; further testing recommended).
+**Current version:** 0.6.0 (cinematic JPEG artwork integrated; real-device verification pending).
 
-![Family movie night](artwork/family-cinema-banner.svg)
+![Family movie night](artwork/family-cinema-hero.jpg)
 
 ## Install: one CSS import
 
@@ -62,3 +62,15 @@ Elegant premium home cinema, not a gaming dashboard: dark navy backgrounds, elec
 Issues and pull requests are welcome. Include Jellyfin version, web browser, screen size, reproducible issue, and a screenshot without sensitive media/user details.
 
 MIT for the original theme/source. ElegantFin retains its own upstream licensing.
+
+## v0.6 artwork — now available
+
+The photographic family hero is now used by the main `theme.css`. The nine JPEG covers are in [artwork/libraries](artwork/libraries/) and are **not automatically substituted for current library images by CSS**: assign them through the library's primary image in Jellyfin to keep them across themes and compatible TV clients. This changes no access permissions.
+
+For an immutable v0.6 theme import use:
+
+```css
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@058dee4adcf09a68100ed5e4f342b98eccb60f84/theme.css");
+```
+
+The hero image inside the stylesheet currently references the public `@main` image path; jsDelivr caches mutable main references. A hard reload may be necessary.
