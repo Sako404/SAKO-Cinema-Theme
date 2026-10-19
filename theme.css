@@ -1,0 +1,76 @@
+/*
+ * SAKO Cinema Theme — preview v0.1.0
+ * Family-first Jellyfin Web styling.
+ * License: MIT. ElegantFin is a separate upstream dependency.
+ * This theme changes presentation only; Jellyfin enforces library permissions.
+ */
+@import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+
+:root {
+  --sako-bg: #090d18;
+  --sako-surface: #151c30;
+  --sako-surface-raised: #202943;
+  --sako-blue: #477dff;
+  --sako-violet: #805de4;
+  --sako-magenta: #c468d9;
+  --sako-text: #f2f4fa;
+  --sako-muted: #aab6cf;
+  --sako-focus: #86bbff;
+  --sako-gradient: linear-gradient(110deg, #477dff 0%, #805de4 64%, #c468d9 100%);
+  --primary-accent-color: #805de4;
+}
+html, body, .skinBody, .backgroundContainer { background-color: var(--sako-bg) !important; color: var(--sako-text); }
+.backgroundContainer {
+  background-image: radial-gradient(ellipse at 90% 10%, rgba(100,61,183,.15), transparent 48%),
+                    radial-gradient(ellipse at 10% 85%, rgba(37,104,216,.10), transparent 50%) !important;
+  background-attachment: fixed;
+}
+.skinHeader, .skinHeader-withBackground {
+  background: rgba(9, 13, 24, .90) !important;
+  border-bottom: 1px solid rgba(136,149,228,.13);
+}
+.headerTabs, .mainDrawer, .dialog, .formDialogHeader, .formDialogFooter {
+  background-color: rgba(15, 21, 38, .96);
+}
+.mainDrawer { border-right: 1px solid rgba(141, 134, 231, .15); }
+.navMenuOption-selected, .navMenuOption:hover,
+.emby-tab-button-active, .emby-tab-button:hover {
+  color: #fff !important;
+  background: linear-gradient(95deg,rgba(71,125,255,.21),rgba(128,93,228,.26)) !important;
+  border-radius: 12px;
+}
+.emby-tab-button-active { border-bottom: 2px solid var(--sako-violet); }
+.sectionTitle, .sectionTitleTextButton, .pageTitle { color: var(--sako-text); }
+.secondaryText, .cardText-secondary, .listItemBodyText { color: var(--sako-muted) !important; }
+.cardBox { border-radius: 14px; transition: transform .20s ease, filter .20s ease; }
+.cardScalable, .cardImageContainer { border-radius: 13px; overflow: hidden; }
+.cardImageContainer { background-color: var(--sako-surface); }
+@media (hover:hover) and (pointer:fine) {
+  .cardBox:hover { transform: translateY(-4px); filter: brightness(1.08); }
+}
+.cardOverlayButton, .emby-button, .raised { transition: background-color .18s ease, box-shadow .18s ease; }
+.raised.button-submit, .button-submit, .emby-button.submit, .fab {
+  background: var(--sako-gradient) !important;
+  color: white !important;
+  border-radius: 12px;
+}
+.emby-button:focus-visible, .card:focus-visible, .cardBox:focus-within,
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 3px solid var(--sako-focus) !important;
+  outline-offset: 2px;
+}
+.itemProgressBarForeground, .mdl-slider-background-lower, .progressring-spiner {
+  background: var(--sako-gradient) !important;
+}
+.cardFooter, .visualCardBox { background-color: transparent; }
+.paperList, .listItem:hover, .overview, .detailPageWrapperContainer { border-radius: 12px; }
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb { background: #554580; border-radius: 10px; }
+@media (max-width: 600px) {
+  .cardBox { border-radius: 10px; }
+  .cardScalable, .cardImageContainer { border-radius: 9px; }
+  .skinHeader, .skinHeader-withBackground { backdrop-filter: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
