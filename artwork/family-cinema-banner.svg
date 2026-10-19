@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 480" role="img" aria-label="Cozy family movie night illustration">
+<defs>
+<linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0b1631"/><stop offset=".62" stop-color="#20204d"/><stop offset="1" stop-color="#4a1b70"/></linearGradient>
+<linearGradient id="screen" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#2833a5"/><stop offset=".55" stop-color="#8254ef"/><stop offset="1" stop-color="#f887ba"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#a16bff" stop-opacity=".50"/><stop offset="1" stop-color="#a16bff" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="26"/></filter>
+</defs>
+<rect width="1600" height="480" fill="url(#bg)"/>
+<circle cx="1165" cy="226" r="310" fill="url(#glow)"/>
+<circle cx="1420" cy="55" r="160" fill="#335cce" opacity=".14" filter="url(#soft)"/>
+<g opacity=".45" fill="none" stroke="#8194e9"><path d="M790 360Q930 125 1110 300T1610 170" opacity=".22" stroke-width="2"/><path d="M760 415Q950 195 1130 355T1610 235" opacity=".15" stroke-width="2"/></g>
+<rect x="1050" y="40" width="440" height="280" rx="20" fill="#060e25" stroke="#6c73ee" stroke-width="6"/>
+<rect x="1065" y="55" width="410" height="250" rx="12" fill="url(#screen)"/>
+<path d="M1065 242L1174 132 1250 198 1338 97 1475 241V305H1065Z" fill="#111f50" opacity=".79"/>
+<path d="M1065 276L1191 192 1260 247 1344 181 1475 266V305H1065Z" fill="#0d1433" opacity=".84"/>
+<circle cx="1360" cy="115" r="30" fill="#f9bedb" opacity=".85"/>
+<path d="M1240 320v21m-62 0h122" stroke="#a2a6ff" stroke-width="8" stroke-linecap="round"/>
+<g transform="translate(790 0)">
+<ellipse cx="390" cy="430" rx="280" ry="40" fill="#0c102d"/>
+<rect x="118" y="332" width="530" height="105" rx="35" fill="#24244f" stroke="#6867ae" stroke-width="4"/>
+<rect x="95" y="350" width="65" height="105" rx="29" fill="#32305d"/>
+<rect x="615" y="350" width="65" height="105" rx="29" fill="#32305d"/>
+<path d="M192 348Q188 271 241 261Q292 267 302 348" fill="#4453a4"/>
+<circle cx="248" cy="247" r="48" fill="#ce8d8f"/>
+<path d="M202 231Q209 173 265 188Q292 194 296 238Q261 219 240 213Q218 231 202 231" fill="#141b38"/>
+<path d="M300 348Q301 290 354 285Q400 280 425 348" fill="#a965b8"/>
+<circle cx="359" cy="271" r="36" fill="#d995a7"/>
+<path d="M326 260Q324 227 361 232Q400 235 395 268Q371 249 326 260" fill="#121a39"/>
+<path d="M425 350Q427 266 498 258Q559 263 561 350" fill="#4c60ac"/>
+<circle cx="493" cy="245" r="46" fill="#d6a097"/>
+<path d="M449 230Q453 179 497 191Q547 187 538 241L522 228Q490 205 449 230" fill="#161a37"/>
+<path d="M558 352Q555 296 594 296Q633 295 635 352" fill="#8c4b9b"/>
+<circle cx="596" cy="282" r="31" fill="#e5a7a0"/>
+<path d="M568 277Q563 245 594 246Q628 247 624 279Q595 261 568 277" fill="#1a1b3e"/>
+</g>
+<path d="M0 0H1600V480H0Z" fill="none" stroke="#6d5bbd" opacity=".4" stroke-width="3"/>
+<g font-family="Arial,Helvetica,sans-serif"><text x="80" y="116" font-size="28" letter-spacing="7" fill="#b8bcf4">WELCOME TO</text><text x="73" y="208" font-size="78" font-weight="bold" fill="#f1f2ff">SAKO CINEMA</text><text x="79" y="268" font-size="29" fill="#d3d4f5">Movies. Shows. Music. Memories.</text><text x="79" y="315" font-size="21" fill="#aebbe3">Your family's cinema, all in one place.</text></g>
+</svg>
