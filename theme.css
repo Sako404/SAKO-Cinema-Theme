@@ -366,3 +366,29 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 }
 /* Artwork for libraries is intentionally not overridden by CSS:
    assign JPGs via Jellyfin's library Primary image for TV compatibility. */
+
+/* ===== v0.6.1 safe cinema finish =====
+   Presentation only: no background-image override for library cards.
+   Keep home-section title positioning and library permissions untouched. */
+#homeTab .cardScalable {
+  box-shadow: 0 7px 25px rgba(0,0,0,.32) !important;
+  outline: 1px solid rgba(142,147,221,.28);
+  outline-offset: -1px;
+}
+#homeTab .cardImageContainer {
+  background-color: #121a32 !important;
+}
+@media (hover:hover) and (pointer:fine) {
+  #homeTab .card:hover .cardScalable {
+    box-shadow: 0 14px 35px rgba(0,0,0,.44),0 0 0 2px rgba(130,103,233,.52) !important;
+  }
+}
+#homeTab .itemProgressBarForeground {
+  background: linear-gradient(90deg,#36abfa,#715af0,#cc5fe2) !important;
+}
+#homeTab .sectionTitle, #homeTab .sectionTitleTextButton {
+  text-shadow: 0 1px 8px rgba(0,0,0,.14);
+}
+@media (prefers-reduced-motion:reduce) {
+  #homeTab .cardScalable {transition:none !important}
+}
