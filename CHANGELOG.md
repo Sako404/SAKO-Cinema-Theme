@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0 — release
+- Same CSS as 1.1.0-rc.2: theme with detail backdrops, hover poster fix, details and library polish, aligned headings; optional `layout.css` with sidebar, full-width hero, tile grid and one card family across home rows
+- Install from release tags only (README); jsDelivr branch URLs can serve stale commits
+- Known limitation: the login page uses base styling only
+
 ## 1.1.0-rc.2 — one card family on the home page
 - layout.css: Continue Watching, Next Up and every Recently Added row now share the panel card (artwork, left-aligned text, violet edge, lift and glow on hover); rows stay horizontal scrollers and keep their native poster shapes
 - layout.css: top-right header icons get a dark backdrop in sidebar mode so they stay legible over scrolled content
