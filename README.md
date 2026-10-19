@@ -60,6 +60,26 @@ From 1.2.0 the hero image has no text baked in. The title is drawn by CSS, so yo
 
 Set only the ones you want to change. Without them you get *SAKO Cinema* and the default lines. An empty value (`""`) hides that line. The title is shown in capitals. On phones only the title is shown.
 
+| Variable | Where it appears | Default |
+|---|---|---|
+| `--sako-hero-kicker` | small spaced capitals above the title | `"Welcome home"` |
+| `--sako-hero-title` | the large gradient title | `"SAKO Cinema"` |
+| `--sako-hero-subtitle` | the line under the title | `"Movies. Shows. Music. Memories."` |
+| `--sako-hero-tagline` | the smaller, muted line above the accent bar | `"Our favourite stories, together."` |
+
+The text is free-form, punctuation included. A complete Custom CSS, as used on the theme author's own server:
+
+```css
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.2.0/theme.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@v1.2.0/layout.css");
+:root {
+  --sako-hero-kicker: "Welcome home";
+  --sako-hero-title: "SAKO Cinema";
+  --sako-hero-subtitle: "Movies - Shows - Music - Memories.";
+  --sako-hero-tagline: "Our favourite stories, together.";
+}
+```
+
 ### Use your server's name automatically
 
 CSS can't read the Jellyfin server name by itself. `scripts/set-hero-title.py` does it for you: it reads the name from your server and writes the `--sako-hero-title` line into Custom CSS. It needs Python 3 and nothing else. Download it from this repository, then preview the change first (no key needed, nothing is written):
