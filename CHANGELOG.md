@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- New `scripts/set-hero-title.py`: writes the Jellyfin server name (or `--title`) into Custom CSS as `--sako-hero-title`, in a marked block that re-runs replace; `--dry-run` without a key, backup before `--apply`, `--restore` to undo
+
 ## 1.2.0-rc.1 — your own hero title
 - Hero image is now text-free (`artwork/family-cinema-hero-clean.jpg`); kicker, title, subtitle, tagline and accent bar are drawn by CSS and scale with the hero
 - New variables `--sako-hero-title`, `--sako-hero-kicker`, `--sako-hero-subtitle`, `--sako-hero-tagline`; defaults reproduce the 1.1.0 look, `""` hides a line (closes #8)
