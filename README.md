@@ -9,10 +9,19 @@ Public, free family-oriented theme for **Jellyfin Web**, built on ElegantFin. Na
 In **Jellyfin Dashboard → Branding → Custom CSS**, replace existing custom CSS with:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@aee12516ab43d1b51dd6382d64324e863c1e2e54/theme.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme/theme.css");
 ```
 
 Save, then reload Jellyfin Web with Ctrl+Shift+R. This stylesheet already imports ElegantFin. Do not import ElegantFin a second time or paste the earlier v0.5 override blocks underneath.
+
+This address always follows the latest published theme, so updates arrive without editing Jellyfin. Two things to know:
+
+- jsDelivr caches the file (CDN up to 12 h, browsers up to 7 days). After an update, reload with Ctrl+Shift+R. Maintainers can clear the CDN copy at `https://purge.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme/theme.css`.
+- To freeze a specific version, pin a commit instead:
+
+```css
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@aee12516ab43d1b51dd6382d64324e863c1e2e54/theme.css");
+```
 
 **Rollback:** previous release candidate (1.0.0-rc1):
 
