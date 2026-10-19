@@ -1,3 +1,10 @@
+## 0.4.0 — Family visual refresh
+- More detailed original family movie-night SVG artwork, still public-safe and fictional
+- Refined hero border/shadow, cards, progress bars and navigation accents
+- Preserved user-confirmed v0.3.3 title alignment
+- Fixed hero artwork URL to a specific commit for reliable cache behaviour
+- Visual review on owner's browser pending
+
 # Changelog
 
 ## 0.2.0 — Complete initial public project (preview)
