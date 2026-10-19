@@ -114,7 +114,7 @@ These are optional, but they get closest to the intended look:
 
 ## Updating and rollback
 
-To update, change the tag in both lines (for example `@v1.1.0` → `@v1.2.0`). Your own `:root { --sako-hero-… }` lines stay as they are and reload with Ctrl+Shift+R.
+To update, change the tag in both lines (for example `@v1.1.0` → `@v1.2.0`) and reload with Ctrl+Shift+R. Your own `--sako-hero-…` lines stay as they are.
 
 <details>
 <summary>Roll back to an earlier version</summary>
