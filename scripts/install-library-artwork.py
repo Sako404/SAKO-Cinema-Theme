@@ -25,7 +25,7 @@ MAP = {
 def norm(s):
     return re.sub(r"\s+", " ", s.casefold().strip())
 def request(url, token=None, method="GET", data=None, content_type=None):
-    headers={"User-Agent":"SAKO-Cinema-Library-Artwork/0.7"}
+    headers={"User-Agent":"SAKO-Cinema-Library-Artwork/0.8"}
     if token:
         # Jellyfin 12 disables deprecated token-only headers by default.
         # Current supported MediaBrowser authorization scheme:
@@ -46,6 +46,7 @@ def main():
     g.add_argument("--dry-run",action="store_true")
     g.add_argument("--apply",action="store_true")
     p.add_argument("--backup-dir",default="./sako-cinema-library-backup")
+    p.add_argument("--only",help="Process only one exact library name, recommended for initial apply")
     args=p.parse_args()
     base=args.url.rstrip("/")
     print("Jellyfin:",base)
@@ -76,6 +77,8 @@ def main():
             print("SKIP (not mapped or missing ItemId):",name)
             continue
         matches.append((name,itemid,file))
+    if args.only:
+        matches=[m for m in matches if norm(m[0])==norm(args.only)]
     if not matches: sys.exit("No mapped libraries found. No changes made.")
     print("\nMatched libraries:")
     for name,itemid,file in matches: print("  ",name,"->",file,"(ItemId:",itemid,")")
@@ -107,13 +110,16 @@ def main():
         try:
             image,content_type=request(REPO+"/"+file)
             if len(image)<1000 or not image.startswith(bytes.fromhex("ffd8")): raise ValueError("Not a valid JPG file")
-            request(image_url,key,method="POST",data=image,content_type="image/jpeg")
-            row["status"]="uploaded"
+            request(image_url,key,method="POST",data=base64.b64encode(image),content_type="image/jpeg")
+            # Confirm that Jellyfin serves a Primary image after the update.
+            confirmed,_=request(image_url,key)
+            if not confirmed: raise ValueError("Jellyfin returned an empty Primary image after upload")
+            row["status"]="uploaded-and-readable"
             print("UPDATED:",name)
         except Exception as e:
             row["status"]="upload-failed";print("FAILED to update",name,e)
         (backup/"manifest.json").write_text(json.dumps(manifest,indent=2),encoding="utf-8")
     print("\nBackups and manifest:",backup)
     print("No library permissions, accounts, paths or media files were changed.")
-    if any(row["status"]!="uploaded" for row in manifest):sys.exit("Some image updates failed; see manifest.")
+    if any(row["status"]!="uploaded-and-readable" for row in manifest):sys.exit("Some image updates failed; see manifest.")
 if __name__=="__main__":main()
