@@ -1,5 +1,5 @@
 /*
- * SAKO Cinema Theme — preview v0.5.1
+ * SAKO Cinema Theme — v0.6.0
  * Family-first Jellyfin Web styling.
  * License: MIT. ElegantFin is a separate upstream dependency.
  * This theme changes presentation only; Jellyfin enforces library permissions.
@@ -89,7 +89,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   border: 1px solid rgba(142,116,255,.65);
   border-radius: 25px;
   background-color: #111a35;
-  background-image: url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@74b1ae692c27adf84ffd2903ed9369f5d47df82e/artwork/family-cinema-banner.svg");
+  background-image: url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/artwork/family-cinema-hero.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -102,7 +102,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   min-height: clamp(170px, 26vw, 400px);
   margin: 1rem auto 2rem;
   border-radius: 24px;
-  background: #121b36 url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@74b1ae692c27adf84ffd2903ed9369f5d47df82e/artwork/family-cinema-banner.svg") center / cover no-repeat;
+  background: #121b36 url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/artwork/family-cinema-hero.jpg") center / cover no-repeat;
   border: 1px solid rgba(142,116,255,.45);
 }
 /* Keep the banner's artwork decorative: no personal media URLs in public CSS. */
@@ -352,3 +352,17 @@ button:focus-visible, a:focus-visible, input:focus-visible {
     box-shadow: 0 14px 32px rgba(0,0,0,.3),0 0 0 1px rgba(120,96,230,.3);
   }
 }
+
+/* ===== v0.6.0 — photographic cinematic banner =====
+   Preserve the user-approved v0.5.1 card and header alignment.
+   The JPEG is 2290x687, exactly 10:3, matching the existing banner geometry. */
+#homeTab .homeSectionsContainer::before,
+#homeTab > .sections::before {
+  background-image: url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/artwork/family-cinema-hero.jpg") !important;
+  aspect-ratio: 10 / 3 !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+/* Artwork for libraries is intentionally not overridden by CSS:
+   assign JPGs via Jellyfin's library Primary image for TV compatibility. */
