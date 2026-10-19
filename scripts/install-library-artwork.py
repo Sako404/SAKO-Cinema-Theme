@@ -43,6 +43,7 @@ def main():
     p.add_argument("--url",default="http://127.0.0.1:30013",help="Jellyfin base URL accessible from where this script runs")
     g=p.add_mutually_exclusive_group(required=True)
     g.add_argument("--diagnose",action="store_true",help="Check public and authenticated endpoints without changing anything")
+    g.add_argument("--inspect-special",action="store_true",help="Inspect Live TV and Playlists views read-only; no changes")
     g.add_argument("--dry-run",action="store_true")
     g.add_argument("--apply",action="store_true")
     p.add_argument("--backup-dir",default="./sako-cinema-library-backup")
@@ -53,6 +54,40 @@ def main():
     print("Jellyfin:",base)
     key=getpass.getpass("Temporary Jellyfin API token (input hidden): ").strip()
     if not key: p.error("API token required")
+    if args.inspect_special:
+        try:
+            raw,_=request(base+"/Users",key)
+            users=json.loads(raw)
+            if not isinstance(users,list):
+                raise ValueError("Unexpected /Users response")
+        except Exception as e:
+            sys.exit("Cannot enumerate views: "+str(e))
+        found={}
+        for user in users:
+            uid=user.get("Id")
+            if not uid: continue
+            try:
+                raw,_=request(base+"/Users/"+str(uid)+"/Views",key)
+                views=json.loads(raw).get("Items",[])
+            except Exception as e:
+                print("View query failed (user identifier hidden):",type(e).__name__)
+                continue
+            for v in views:
+                name=str(v.get("Name",""))
+                collection=str(v.get("CollectionType",""))
+                kind=str(v.get("Type",""))
+                if any(word in norm(name+" "+collection+" "+kind) for word in ("playlist","live tv","livetv")):
+                    vid=v.get("Id")
+                    found[(name,str(vid))]=(collection,kind)
+        if not found:
+            print("No matching special views found through /Users/{id}/Views.")
+            print("These may be web-client navigation entries without image-backed server items.")
+        else:
+            print("Potential Live TV / Playlists views (deduplicated):")
+            for (name,vid),(collection,kind) in sorted(found.items()):
+                print("  Name:",name,"| ItemId:",vid,"| CollectionType:",collection,"| Type:",kind)
+        print("READ ONLY. No changes made.")
+        return
     if args.diagnose:
         for label, path, tok in [("public", "/System/Info/Public", None), ("authentication", "/System/Info", key), ("libraries", "/Library/VirtualFolders", key)]:
             try:
