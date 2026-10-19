@@ -2,7 +2,7 @@
 
 The repository ships one hero banner and nine library covers:
 
-- `artwork/family-cinema-hero.jpg`: home banner, 2290 × 687 (10:3). `theme.css` loads it, so you don't need to install it.
+- `artwork/family-cinema-hero-clean.jpg`: home banner without text, 2290 × 687 (10:3). `theme.css` loads it and draws the title on top, so you don't need to install it. `artwork/family-cinema-hero.jpg` is the earlier version with the title baked in, used by 1.1.0 and older.
 - `artwork/libraries/*.jpg`: library covers, 1672 × 941 (16:9). The SVG files are editable source versions.
 
 Assign each cover as the library's **Primary** image in Jellyfin. Unlike CSS, a Primary image is stored on the server. It survives theme updates and appears in the native TV apps.

@@ -45,6 +45,23 @@ The second line is **optional**. Leave it out to keep Jellyfin's standard layout
 > [!IMPORTANT]
 > Always import a **release tag** such as `@v1.1.0`, never `@main` and never an address without a version. jsDelivr can keep serving an old commit for a branch on some of its servers, even after a purge. Tags never change. To update, change the version number in both lines. Releases are listed under [Releases](https://github.com/Sako404/SAKO-Cinema-Theme/releases).
 
+## Your own hero title
+
+From 1.2.0 (in testing as `v1.2.0-rc.1`) the hero image has no text baked in. The title is drawn by CSS, so you can put your own name on it. Add any of these lines **after** the imports:
+
+```css
+:root {
+  --sako-hero-title: "Smith Family Cinema";
+  --sako-hero-kicker: "Welcome home";
+  --sako-hero-subtitle: "Movies. Shows. Music. Memories.";
+  --sako-hero-tagline: "Our favourite stories, together.";
+}
+```
+
+Set only the ones you want to change. Without them you get *SAKO Cinema* and the default lines. An empty value (`""`) hides that line. The title is shown in capitals. On phones only the title is shown.
+
+CSS can't read the Jellyfin server name, so the title has to be typed in here.
+
 ## What you get
 
 | | `theme.css`: colours and cards | `layout.css`: optional layout |
