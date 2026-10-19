@@ -1,0 +1,15 @@
+/* SAKO Cinema v0.6 cinematic artwork enhancement. This file assumes images are uploaded to the public GitHub repository at artwork/. */
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@291b404ebe25b29d5ebc1a989e2c921a49954348/theme.css");
+
+/* Replace the previous SVG hero with the final photographic artwork. */
+#homeTab .homeSectionsContainer::before,
+#homeTab > .sections::before {
+  background-image: url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/artwork/family-cinema-hero.jpg") !important;
+  aspect-ratio: 2290 / 687 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+/* Preserve genuine Jellyfin library cover artwork: never set background shorthand on cardImageContainer. */
