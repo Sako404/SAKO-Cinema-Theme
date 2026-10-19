@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased
+## 1.2.0 — release
+- Same CSS as 1.2.0-rc.2: text-free hero image with the title, kicker, subtitle, tagline and accent bar drawn by CSS
+- Set your own hero text with `--sako-hero-title`, `--sako-hero-kicker`, `--sako-hero-subtitle`, `--sako-hero-tagline`, or write the server name in with `scripts/set-hero-title.py` (README)
+- Without any of these, the hero looks as it did in 1.1.0
+
+## 1.2.0-rc.2 — tagline size, server-name helper
 - Hero: the tagline is smaller, muted and letter-spaced again (as in 1.1.0) instead of matching the subtitle; it is drawn by the hero box itself, and the accent bar sits below it
 - New `scripts/set-hero-title.py`: writes the Jellyfin server name (or `--title`) into Custom CSS as `--sako-hero-title`, in a marked block that re-runs replace; `--dry-run` without a key, backup before `--apply`, `--restore` to undo
 
