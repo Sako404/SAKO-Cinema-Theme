@@ -26,7 +26,14 @@ def norm(s):
     return re.sub(r"\s+", " ", s.casefold().strip())
 def request(url, token=None, method="GET", data=None, content_type=None):
     headers={"User-Agent":"SAKO-Cinema-Library-Artwork/0.7"}
-    if token: headers["X-Emby-Token"]=token
+    if token:
+        # Jellyfin 12 disables deprecated token-only headers by default.
+        # Current supported MediaBrowser authorization scheme:
+        headers["Authorization"]=(
+            'MediaBrowser Client="SAKO Cinema Installer", '
+            'Device="TrueNAS SSH", DeviceId="sako-cinema-artwork-cli", '
+            'Version="0.7.1", Token="'+token+'"'
+        )
     if content_type: headers["Content-Type"]=content_type
     req=urllib.request.Request(url,headers=headers,data=data,method=method)
     with urllib.request.urlopen(req,timeout=25) as r:
