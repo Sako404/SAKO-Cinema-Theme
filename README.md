@@ -1,50 +1,64 @@
-# SAKO Cinema Theme
+# SAKO Cinema Theme 🎬
 
-A family-first, navy / electric blue / violet / subtle magenta theme for **Jellyfin Web**, inspired by a cinematic, comfortable home entertainment experience. Built as an optional styling layer on top of [ElegantFin](https://github.com/lscambo13/ElegantFin).
+A free, open-source **family cinema look for Jellyfin Web**: deep navy, electric blue, violet, subtle magenta, cinema-style library cards, a family movie-night banner, and an optional standalone visual preview. Built on top of ElegantFin.
 
-> **Status: v0.1.0 preview.** CSS selectors have not yet been verified against the owner's running Jellyfin instance or all ElegantFin versions. Test before everyday use.
+**Current version:** 0.2.0 (preview release / testing required).
 
-## Install
+![Family movie night](artwork/family-cinema-banner.svg)
 
-In Jellyfin Dashboard → General → Custom CSS, replace your old ElegantFin import (do **not** stack both) with:
+## Install: one CSS import
+
+In **Jellyfin Dashboard → General → Custom CSS**, **replace** the current ElegantFin import (do not keep both imports) with:
 
 ```css
 @import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/theme.css");
 ```
 
-For production, use a pinned release once one has been published (e.g. `@v1.0.0`) rather than `@main`. No release tag exists yet.
+Save and hard refresh the browser (Ctrl+Shift+R). jsDelivr's `@main` may be cached for a while, and Jellyfin may keep local CSS cache. The theme already imports ElegantFin.
 
-**To roll back:** remove the SAKO import and restore your previous ElegantFin import:
+### Undo
+
+Simply restore your previous ElegantFin import:
 
 ```css
 @import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
-## What it changes
+## Project files
 
-- Dark navy UI, blue-to-violet accents and subtle magenta
-- Navigation, focus indication, cards, progress bars, buttons, scrollbar
-- Restrained desktop hover motion and reduced-motion support
-- Responsive refinements for small screens
+- [theme.css](theme.css) — complete installable CSS with ElegantFin import
+- [Family cinema banner](artwork/family-cinema-banner.svg) — original SVG family illustration for the home hero
+- [Library artwork](artwork/libraries/) — **9 different permanent library images** (including adult library art for personal use)
+- [Artwork guide](artwork/README.md) — how to assign covers directly to Jellyfin libraries
+- [Standalone visual preview](preview.html) — mockup showing the intended layout (not a live Jellyfin client)
+- [License](LICENSE) / [Changelog](CHANGELOG.md)
 
-## What it does not change
+## What works where?
 
-- **Android TV / Amazon Fire TV native Jellyfin app:** Custom CSS normally applies to Jellyfin's web client, not its native Android TV interface. Static artwork assigned to libraries can appear in supported native clients.
-- Library access and parental controls: keep permissions enforced in Jellyfin user settings. CSS must never be used to hide adult content as an access control.
-- Your server files, media metadata or Jellyfin login flow.
+| Client | CSS visuals | Permanently assigned library artwork |
+| --- | --- | --- |
+| Jellyfin Web / web browser | Yes | Yes |
+| Family Command Center opening Jellyfin Web | Yes | Yes |
+| Amazon Fire TV Cube native Jellyfin app | No | Generally yes, depending on format/client |
+| Google TV native Jellyfin app | No | Generally yes, depending on format/client |
 
-## Artwork
+The native TV app does not load the server's Custom CSS. The artwork is separate, so it can still be used on TV.
 
-Our preferred visual direction is a family watching a movie together: warm human atmosphere with restrained electric blue/violet highlights; **no gold**. The original concept image is a *mockup*, not a working screenshot of Jellyfin. Static library images should be managed in Jellyfin as **library primary/backdrop images**, not swapped via CSS. That makes them independent from theme updates. An artwork pack will be added separately after asset review; it is **not included** in this preview.
+## Important limitations
 
-Planned library artwork: Movies, TV Shows, Music, Collections, Playlists, Home Videos & Photos, Live TV, plus optional discreet Adult Movies art (access controlled in Jellyfin). Do not include private family photos in a public repository.
+- This is a **real CSS theme**, not a replacement of the Jellyfin Web application. It cannot reproduce all layout elements of the concept image, such as a functioning custom sidebar or new navigation. The banner and enhanced cards are real CSS additions; they rely on Jellyfin's actual HTML selectors and need testing on your version.
+- The original SVG family artwork is an **illustration**, not a photographic likeness or portrait of actual household members.
+- These library SVGs can be converted to PNG/JPEG if Jellyfin rejects SVG uploads.
+- Library access is managed entirely by Jellyfin user permissions. Do not use CSS to hide adult libraries.
+- ElegantFin is a separate upstream CSS dependency, currently imported via `@main`. This is convenient but can change without warning. Pin a tested upstream commit and release tag before calling it stable production.
+- Do not publish private home media, screenshots with personal details, tokens, or real family photos in issues or pull requests.
 
-## Dependencies / licensing
+## Visual direction
 
-This repository's original CSS and documentation are MIT licensed. ElegantFin is fetched independently at runtime under its own upstream license; it is not redistributed here. Movie posters or other third-party imagery are not included. Upstream `@main` can change without notice; a future release should pin a tested ElegantFin commit.
+Elegant premium home cinema, not a gaming dashboard: dark navy backgrounds, electric blue/violet focus indicators, restrained glow, softer cards, visible keyboard focus, mobile adjustments, and reduced-motion handling. **No gold branding.**
 
-## Maintenance
+## Contributing
 
-Please report the Jellyfin server version, browser/client, reproduction steps and a screenshot with sensitive information removed when opening an issue.
+Issues and pull requests are welcome. Include Jellyfin version, web browser, screen size, reproducible issue, and a screenshot without sensitive media/user details.
 
-Created for a real family media server and shared for anyone to adapt.
+MIT for the original theme/source. ElegantFin retains its own upstream licensing.
