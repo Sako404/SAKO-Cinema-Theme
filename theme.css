@@ -1,5 +1,5 @@
 /*
- * SAKO Cinema Theme — preview v0.4.1
+ * SAKO Cinema Theme — preview v0.5.1
  * Family-first Jellyfin Web styling.
  * License: MIT. ElegantFin is a separate upstream dependency.
  * This theme changes presentation only; Jellyfin enforces library permissions.
@@ -331,5 +331,24 @@ button:focus-visible, a:focus-visible, input:focus-visible {
     min-height: 0 !important;
     border-radius: 12px !important;
     margin: .65rem auto 1.1rem !important;
+  }
+}
+
+/* v0.5.1 — safe visual polish: never override artwork backgrounds.
+   Jellyfin uses background-image on .cardImageContainer for library images.
+   Explicit background shorthand with !important would erase them. */
+#homeTab .cardImageContainer {
+  background-color: #10192f !important;
+}
+#homeTab .cardImageContainer::after {
+  content: none !important;
+}
+#homeTab .cardScalable {
+  border-radius: 15px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.19);
+}
+@media (hover:hover) and (pointer:fine) {
+  #homeTab .card:hover .cardScalable {
+    box-shadow: 0 14px 32px rgba(0,0,0,.3),0 0 0 1px rgba(120,96,230,.3);
   }
 }
