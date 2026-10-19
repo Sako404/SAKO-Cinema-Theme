@@ -1,5 +1,5 @@
 /*
- * SAKO Cinema Theme — preview v0.3.2
+ * SAKO Cinema Theme — preview v0.3.3
  * Family-first Jellyfin Web styling.
  * License: MIT. ElegantFin is a separate upstream dependency.
  * This theme changes presentation only; Jellyfin enforces library permissions.
@@ -244,5 +244,19 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 @media (max-width:700px) {
   #homeTab .verticalSection:not(.padded-left) > .sectionTitleContainer {
     padding-left: 16px !important;
+  }
+}
+
+/* v0.3.3: clickable home section headings (Next Up, Recently Added)
+   appear 24px left of static headings in the user's Jellyfin build.
+   Adjust only the text/button, without changing card widths or scroller gutters. */
+@media (min-width: 701px) {
+  #homeTab .sectionTitleContainer .sectionTitleTextButton {
+    margin-left: 24px !important;
+  }
+}
+@media (max-width: 700px) {
+  #homeTab .sectionTitleContainer .sectionTitleTextButton {
+    margin-left: 0 !important;
   }
 }
