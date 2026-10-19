@@ -60,7 +60,21 @@ From 1.2.0 (in testing as `v1.2.0-rc.1`) the hero image has no text baked in. Th
 
 Set only the ones you want to change. Without them you get *SAKO Cinema* and the default lines. An empty value (`""`) hides that line. The title is shown in capitals. On phones only the title is shown.
 
-CSS can't read the Jellyfin server name, so the title has to be typed in here.
+### Use your server's name automatically
+
+CSS can't read the Jellyfin server name by itself. `scripts/set-hero-title.py` does it for you: it reads the name from your server and writes the `--sako-hero-title` line into Custom CSS. It needs Python 3 and nothing else. Download it from this repository, then preview the change first (no key needed, nothing is written):
+
+```
+python3 set-hero-title.py --url http://YOUR-SERVER:8096 --dry-run
+```
+
+Then apply it. It asks for an admin API key (**Dashboard → API Keys**), backs up your branding settings and asks you to type `APPLY`:
+
+```
+python3 set-hero-title.py --url http://YOUR-SERVER:8096 --apply
+```
+
+Run it again after renaming the server; it replaces its own line instead of adding another. `--title "Any text"` uses your own text instead of the server name, and `--restore <backup file>` undoes the change. Delete the API key afterwards if you created it only for this.
 
 ## What you get
 
@@ -135,6 +149,7 @@ theme.css                      colours, cards and pages (required)
 layout.css                     sidebar and home layout (optional)
 artwork/                       hero banner and library covers (JPG + SVG source)
 scripts/install-library-artwork.py   optional API installer for library covers
+scripts/set-hero-title.py            optional: hero title from the server name
 docs/screenshots/              images used in this README
 CHANGELOG.md                   release notes
 ```

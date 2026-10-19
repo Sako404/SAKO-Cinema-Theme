@@ -57,9 +57,13 @@ html,body,.skinBody {color:var(--sako-text)}
 }
 #homeTab .homeSectionsContainer::before,
 #homeTab > .sections::before {
- content:"";
+ /* the hero box also carries the tagline, so it gets its own size and colour */
+ content:var(--sako-hero-tagline);
  display:block!important;
  box-sizing:border-box!important;
+ padding:calc(var(--sako-hero-w) * .1745) calc(var(--sako-hero-w) * .45) 0 calc(var(--sako-hero-w) * .0575)!important;
+ font-size:calc(var(--sako-hero-w) * .0155);line-height:1.2;font-weight:400;
+ letter-spacing:.05em;color:#aab6dd;white-space:pre-line;overflow:hidden;
  width:var(--sako-hero-w)!important;
  max-width:none!important;
  aspect-ratio:10/3!important;
@@ -70,7 +74,7 @@ html,body,.skinBody {color:var(--sako-text)}
  background:#111a35 url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@1855d90a60bfdf202dcbb5c3b879d60ac66b245e/artwork/family-cinema-hero-clean.jpg") center/100% 100% no-repeat!important;
  box-shadow:0 20px 52px rgba(0,0,0,.37),0 0 30px rgba(100,73,215,.075)!important;
 }
-/* Hero text: kicker, title, subtitle + tagline with the accent bar. Positions are fractions of the hero width. */
+/* Hero text: kicker, title, subtitle with the accent bar (tagline is in the hero box above). Positions are fractions of the hero width. */
 #homeTab::before,#homeTab::after,#homeTab > .homeSectionsContainer::after {
  position:absolute;z-index:1;pointer-events:none;
  left:calc((100cqw - var(--sako-hero-w)) / 2 + var(--sako-hero-w) * .0575);
@@ -93,10 +97,11 @@ html,body,.skinBody {color:var(--sako-text)}
  filter:drop-shadow(0 0 calc(var(--sako-hero-w) * .006) rgba(150,140,255,.45))
 }
 #homeTab::after {
- content:var(--sako-hero-subtitle) "\A" var(--sako-hero-tagline);
- top:calc(var(--sako-hero-top) + var(--sako-hero-w) * .1405);
- font-size:calc(var(--sako-hero-w) * .0198);line-height:1.55;color:#dfe4fb;
- padding-bottom:calc(var(--sako-hero-w) * .013);
+ content:var(--sako-hero-subtitle);
+ top:calc(var(--sako-hero-top) + var(--sako-hero-w) * .1411);
+ font-size:calc(var(--sako-hero-w) * .0215);color:#e6eafc;
+ /* bar sits below the tagline */
+ padding-bottom:calc(var(--sako-hero-w) * .042);
  background:var(--sako-gradient) left bottom / calc(var(--sako-hero-w) * .115) 4px no-repeat
 }
 /* Home layout: retain previously user-tested heading alignment. */
@@ -255,6 +260,7 @@ button:focus-visible,a:focus-visible,input:focus-visible {
  }
  /* too small to read on a phone: keep only the title, centred vertically */
  #homeTab::after,#homeTab > .homeSectionsContainer::after {display:none}
+ #homeTab .homeSectionsContainer::before,#homeTab > .sections::before {content:""}
  #homeTab::before {
   top:calc(var(--sako-hero-top) + var(--sako-hero-w) * .15);transform:translateY(-50%);
   font-size:calc(var(--sako-hero-w) * .062)
