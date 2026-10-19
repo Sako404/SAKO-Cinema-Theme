@@ -1,76 +1,45 @@
 # SAKO Cinema Theme 🎬
 
-A free, open-source **family cinema look for Jellyfin Web**: deep navy, electric blue, violet, subtle magenta, cinema-style library cards, a family movie-night banner, and an optional standalone visual preview. Built on top of ElegantFin.
+Public, free family-oriented theme for **Jellyfin Web**, built on ElegantFin. Navy, blue, violet, magenta and cozy home cinema artwork. No gold.
 
-**Current version:** 0.6.0 (cinematic JPEG artwork integrated; real-device verification pending).
+![SAKO Cinema hero](artwork/family-cinema-hero.jpg)
 
-![Family movie night](artwork/family-cinema-hero.jpg)
+## Install (single CSS import)
 
-## Install: one CSS import
-
-In **Jellyfin Dashboard → General → Custom CSS**, **replace** the current ElegantFin import (do not keep both imports) with:
+In **Jellyfin Dashboard → Branding → Custom CSS**, replace existing custom CSS with:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@main/theme.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@0d6745cd7034b49b2213f4a1b8af988636fc8651/theme.css");
 ```
 
-Save and hard refresh the browser (Ctrl+Shift+R). jsDelivr's `@main` may be cached for a while, and Jellyfin may keep local CSS cache. The theme already imports ElegantFin.
+Save, then reload Jellyfin Web with Ctrl+Shift+R. This stylesheet already imports ElegantFin. Do not import ElegantFin a second time or paste the earlier v0.5 override blocks underneath.
 
-### Undo
-
-Simply restore your previous ElegantFin import:
+**Rollback:** restore your earlier working v0.6.1 version:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@2bb4583dc36a057a9e360f9da8cc82bbd614e620/theme.css");
 ```
 
-## Project files
+## What is included
 
-- [theme.css](theme.css) — complete installable CSS with ElegantFin import
-- [Family cinema banner](artwork/family-cinema-banner.svg) — original SVG family illustration for the home hero
-- [Library artwork](artwork/libraries/) — **9 different permanent library images** (including adult library art for personal use)
-- [Artwork guide](artwork/README.md) — how to assign covers directly to Jellyfin libraries
-- [Standalone visual preview](preview.html) — mockup showing the intended layout (not a live Jellyfin client)
-- [License](LICENSE) / [Changelog](CHANGELOG.md)
+- Clean CSS with one set of rules for home hero, card visuals, progress and headings
+- Layout refinements for Jellyfin Web home, browse and detail pages
+- Focus visibility, mobile adjustments and reduced-motion preference
+- New cinematic family hero (JPG) and nine permanent cover images
+- [Library artwork](artwork/libraries/) and [artwork installation script](scripts/install-library-artwork.py)
 
-## What works where?
+Original media-library covers should be assigned in Jellyfin as **Primary** images rather than replaced with CSS. They then persist through style updates and may be displayed by native TV clients.
 
-| Client | CSS visuals | Permanently assigned library artwork |
-| --- | --- | --- |
-| Jellyfin Web / web browser | Yes | Yes |
-| Family Command Center opening Jellyfin Web | Yes | Yes |
-| Amazon Fire TV Cube native Jellyfin app | No | Generally yes, depending on format/client |
-| Google TV native Jellyfin app | No | Generally yes, depending on format/client |
+## Scope and limitations
 
-The native TV app does not load the server's Custom CSS. The artwork is separate, so it can still be used on TV.
+The original mockup is a *visual design reference*, not a pixel-perfect Jellyfin implementation. This is **CSS layered on existing Jellyfin Web**, not a replacement web app. It preserves actual navigation and functionality; a different functional sidebar, new recommendations engine, or custom menu hierarchy would require client development rather than CSS.
 
-## Important limitations
+Native Jellyfin apps on Fire TV/Google TV do not apply web CSS. Artwork is stored on the server and can carry across where the native clients support it.
 
-- This is a **real CSS theme**, not a replacement of the Jellyfin Web application. It cannot reproduce all layout elements of the concept image, such as a functioning custom sidebar or new navigation. The banner and enhanced cards are real CSS additions; they rely on Jellyfin's actual HTML selectors and need testing on your version.
-- The original SVG family artwork is an **illustration**, not a photographic likeness or portrait of actual household members.
-- These library SVGs can be converted to PNG/JPEG if Jellyfin rejects SVG uploads.
-- Library access is managed entirely by Jellyfin user permissions. Do not use CSS to hide adult libraries.
-- ElegantFin is a separate upstream CSS dependency, currently imported via `@main`. This is convenient but can change without warning. Pin a tested upstream commit and release tag before calling it stable production.
-- Do not publish private home media, screenshots with personal details, tokens, or real family photos in issues or pull requests.
+Jellyfin permissions must control access to private/adult libraries. CSS is not a security boundary. Never put API keys or private family photos in public repository content.
 
-## Visual direction
+**Release status:** v1.0.0 candidate, published but not yet verified on owner's specific Jellyfin installation. The ElegantFin upstream dependency is still fetched from its `main` branch; pin a tested version before treating the package as fully reproducible.
 
-Elegant premium home cinema, not a gaming dashboard: dark navy backgrounds, electric blue/violet focus indicators, restrained glow, softer cards, visible keyboard focus, mobile adjustments, and reduced-motion handling. **No gold branding.**
+## Maintainers
 
-## Contributing
-
-Issues and pull requests are welcome. Include Jellyfin version, web browser, screen size, reproducible issue, and a screenshot without sensitive media/user details.
-
-MIT for the original theme/source. ElegantFin retains its own upstream licensing.
-
-## v0.6 artwork — now available
-
-The photographic family hero is now used by the main `theme.css`. The nine JPEG covers are in [artwork/libraries](artwork/libraries/) and are **not automatically substituted for current library images by CSS**: assign them through the library's primary image in Jellyfin to keep them across themes and compatible TV clients. This changes no access permissions.
-
-For an immutable v0.6 theme import use:
-
-```css
-@import url("https://cdn.jsdelivr.net/gh/Sako404/SAKO-Cinema-Theme@058dee4adcf09a68100ed5e4f342b98eccb60f84/theme.css");
-```
-
-The hero image inside the stylesheet currently references the public `@main` image path; jsDelivr caches mutable main references. A hard reload may be necessary.
+Original CSS/docs/artwork: MIT (see LICENSE). ElegantFin is a separate dependency under its upstream licence. Contributions and screenshots without sensitive information welcome.
