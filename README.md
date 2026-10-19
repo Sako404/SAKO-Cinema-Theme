@@ -2,7 +2,7 @@
 
 A free, open-source **family cinema look for Jellyfin Web**: deep navy, electric blue, violet, subtle magenta, cinema-style library cards, a family movie-night banner, and an optional standalone visual preview. Built on top of ElegantFin.
 
-**Current version:** 0.2.0 (preview release / testing required).
+**Current version:** 0.4.0 (preview / visually tested in Jellyfin Web; further testing recommended).
 
 ![Family movie night](artwork/family-cinema-banner.svg)
 
