@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0-rc.2 — one card family on the home page
+- layout.css: Continue Watching, Next Up and every Recently Added row now share the panel card (artwork, left-aligned text, violet edge, lift and glow on hover); rows stay horizontal scrollers and keep their native poster shapes
+- layout.css: top-right header icons get a dark backdrop in sidebar mode so they stay legible over scrolled content
+
 ## 1.1.0-rc1 — optional layout module
 - New `layout.css` (opt-in second import): sidebar from Jellyfin's library nav, full-width home hero with overlapping library tiles, My Media tile grid, panel Continue Watching cards, full-width library grids next to the sidebar
 - Sidebar only from 1100px, never in the TV layout or video player, and only where `:has()` is supported

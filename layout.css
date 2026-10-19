@@ -42,6 +42,10 @@
   box-shadow:0 0 18px rgba(128,93,228,.35),inset 0 0 12px rgba(128,93,228,.18)
  }
  html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a.MuiButton-colorPrimary svg {color:#fff}
+ /* the header is transparent here: give the top-right icons their own backdrop so they stay legible over content */
+ html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .MuiAppBar-root .MuiToolbar-root > .MuiBox-root .MuiIconButton-root {
+  background-color:rgba(12,18,40,.74)!important;margin-left:6px!important
+ }
  html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) main {margin-left:var(--sako-sidebar)!important;width:auto!important}
  /* Jellyfin sizes grid cards as a % of the viewport; with the sidebar that leaves a gap, so use a real grid */
  html:not(.layout-tv) body:has(.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:first-child > a + a) .itemsContainer.vertical-wrap {
@@ -94,14 +98,27 @@
 #homeTab .sectionTitleContainer .sectionTitle,
 #homeTab .sectionTitleContainer .sectionTitleTextButton {font-size:1.4rem!important}
 
-/* ---------- Continue Watching: footer sits in a panel under the thumbnail ---------- */
-#homeTab .section1 .cardBox {
- background:rgba(21,29,51,.82)!important;border:1px solid rgba(142,147,221,.22)!important;
- border-radius:15px!important;overflow:hidden!important
+/* ---------- Content rows (Continue Watching, Next Up, Recently Added...): one card family ----------
+ Same panel as the mockup: artwork on top, left-aligned text below, violet edge and glow.
+ Rows stay horizontal scrollers with titles; only My Media (section0) is a tile grid. */
+#homeTab .verticalSection:not(.section0) .cardBox {
+ background:rgba(21,29,51,.82)!important;border:1px solid rgba(142,147,221,.24)!important;
+ border-radius:15px!important;overflow:hidden!important;
+ box-shadow:0 8px 26px rgba(0,0,0,.34)!important;
+ transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease
 }
-#homeTab .section1 .cardScalable {border-radius:0!important;outline:0!important;box-shadow:none!important}
-#homeTab .section1 .cardImageContainer {border-radius:0!important}
+#homeTab .verticalSection:not(.section0) .cardScalable {
+ border-radius:0!important;outline:0!important;box-shadow:none!important;transform:none!important
+}
+#homeTab .verticalSection:not(.section0) .cardImageContainer {border-radius:0!important}
 /* Jellyfin puts cardText directly in cardBox here (no cardFooter) */
-#homeTab .section1 .cardText {text-align:left!important;padding-left:.85rem!important;padding-right:.85rem!important}
-#homeTab .section1 .cardText-first {padding-top:.6rem!important}
-#homeTab .section1 .cardBox > .cardText:last-child {padding-bottom:.65rem!important}
+#homeTab .verticalSection:not(.section0) .cardText {text-align:left!important;padding-left:.85rem!important;padding-right:.85rem!important}
+#homeTab .verticalSection:not(.section0) .cardText-first {padding-top:.6rem!important}
+#homeTab .verticalSection:not(.section0) .cardBox > .cardText:last-child {padding-bottom:.65rem!important}
+@media (hover:hover) and (pointer:fine) {
+ #homeTab .verticalSection:not(.section0) .card:hover .cardBox,
+ #homeTab .verticalSection:not(.section0) .card:focus-within .cardBox {
+  transform:translateY(-3px);border-color:rgba(160,140,255,.7)!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.45),0 0 0 1px rgba(130,103,233,.55),0 0 24px rgba(110,80,230,.22)!important
+ }
+}
