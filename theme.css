@@ -1,5 +1,5 @@
 /*
- * SAKO Cinema Theme — preview v0.1.0
+ * SAKO Cinema Theme — preview v0.3.0
  * Family-first Jellyfin Web styling.
  * License: MIT. ElegantFin is a separate upstream dependency.
  * This theme changes presentation only; Jellyfin enforces library permissions.
@@ -172,4 +172,55 @@ button:focus-visible, a:focus-visible, input:focus-visible {
     margin: .55rem auto 1.25rem;
     width: calc(100% - 1rem);
   }
+}
+
+/* v0.3: layout stabilisation on actual SAKO Jellyfin home */
+#homeTab .sectionTitleContainer {
+  border-left: 0 !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  margin-top: 1.35rem !important;
+  margin-bottom: .7rem !important;
+  min-height: 30px;
+}
+#homeTab .sectionTitleContainer .sectionTitle,
+#homeTab .sectionTitleContainer .sectionTitleTextButton {
+  padding-left: 0 !important;
+  border-left: 0 !important;
+  line-height: 1.45 !important;
+  font-size: 1.15rem !important;
+}
+#homeTab .verticalSection {
+  margin-bottom: 1.8rem !important;
+}
+/* Keep carousels and progress artwork fully inside the card. */
+#homeTab .cardBox {
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#homeTab .cardScalable {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+#homeTab .cardFooter {
+  padding: .3rem .25rem .45rem !important;
+}
+#homeTab .cardText {
+  font-size: .94em;
+  line-height: 1.3;
+}
+#homeTab .cardText-secondary { font-size: .84em !important; }
+#homeTab .itemsContainer { align-items: flex-start; }
+#homeTab .card:focus-within { z-index: 2; }
+/* Reduce large empty gaps introduced by inherited layout rules. */
+#homeTab .verticalSection .sectionTitleContainer + .emby-scroller,
+#homeTab .verticalSection .sectionTitleContainer + .itemsContainer {
+  margin-top: 0 !important;
+}
+/* Keep the existing desktop top navigation intact. */
+@media (min-width: 1100px) {
+  .headerTop { min-height: 48px; }
+  .mainDrawer:not(.drawer-open) { width: auto; }
 }
