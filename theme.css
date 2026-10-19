@@ -66,8 +66,9 @@ html,body,.skinBody {color:var(--sako-text)}
  margin-left:0!important;margin-right:0!important;
  padding:0!important;box-sizing:border-box!important
 }
+/* Jellyfin indents sections by 3.3% (.padded-left); match it so every heading lines up at any width */
 #homeTab .verticalSection:not(.padded-left) > .sectionTitleContainer {
- padding-left:clamp(24px,3.3vw,60px)!important;
+ padding-left:3.3%!important;
 }
 #homeTab .verticalSection.padded-left > .sectionTitleContainer {padding-left:0!important}
 #homeTab .sectionTitleContainer .sectionTitle,
@@ -81,9 +82,7 @@ html,body,.skinBody {color:var(--sako-text)}
  font-size:1.15rem!important;line-height:1.45!important;
  font-weight:750!important;letter-spacing:-.02em;color:#f0f2ff!important
 }
-@media (min-width:701px) {
- #homeTab .sectionTitleContainer .sectionTitleTextButton {margin-left:24px!important}
-}
+#homeTab .sectionTitleContainer .sectionTitleTextButton {margin-left:0!important}
 #homeTab .sectionTitleTextButton:hover {color:#bdadff!important}
 #homeTab .itemsContainer,#homeTab .emby-scroller {scrollbar-color:#5947aa transparent}
 #homeTab .verticalSection .sectionTitleContainer + .emby-scroller,
@@ -212,8 +211,6 @@ button:focus-visible,a:focus-visible,input:focus-visible {
   width:calc(100% - 1rem)!important;border-radius:12px!important;
   margin:.65rem auto 1.1rem!important
  }
- #homeTab .verticalSection:not(.padded-left) > .sectionTitleContainer {padding-left:16px!important}
- #homeTab .sectionTitleContainer .sectionTitleTextButton {margin-left:0!important}
  #homeTab .cardScalable,#homeTab .cardImageContainer {border-radius:10px!important}
  .skinHeader,.skinHeader-withBackground {backdrop-filter:none}
 }
