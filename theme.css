@@ -1,5 +1,5 @@
 /*
- * SAKO Cinema Theme — preview v0.4.0
+ * SAKO Cinema Theme — preview v0.4.1
  * Family-first Jellyfin Web styling.
  * License: MIT. ElegantFin is a separate upstream dependency.
  * This theme changes presentation only; Jellyfin enforces library permissions.
@@ -302,4 +302,34 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 }
 @media (prefers-reduced-motion:reduce) {
   #homeTab .cardScalable { transition: none !important; }
+}
+
+/* v0.4.1 — aspect-ratio-correct hero, no cropping on desktop.
+   Source artwork is 1600x480 (10:3). This replaces hard-coded heights.
+   This also overrides any earlier cover-position rules in the theme. */
+#homeTab .homeSectionsContainer::before,
+#homeTab > .sections::before {
+  box-sizing: border-box !important;
+  display: block !important;
+  width: min(calc(100% - 2rem), 1600px) !important;
+  max-width: 1600px !important;
+  aspect-ratio: 10 / 3 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  margin: 1rem auto 1.6rem !important;
+}
+@media (max-width: 700px) {
+  #homeTab .homeSectionsContainer::before,
+  #homeTab > .sections::before {
+    width: calc(100% - 1rem) !important;
+    aspect-ratio: 10 / 3 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    border-radius: 12px !important;
+    margin: .65rem auto 1.1rem !important;
+  }
 }
